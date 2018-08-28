@@ -1,6 +1,7 @@
 /*TABLE OF CONTENTS
 **1. Remove Adjacent Duplicates From a String
 **2. Fizz Buzz
+**3. Reverse a String
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -46,4 +47,10 @@ for(let i = 1; i <= 100; i ++){
     } else {
         console.log(i);
     }
+}
+
+//3.Write a function that takes in a string and returns the reversed string
+
+function revserseString(string){
+    return Array.from(string).reverse().join('');
 }
