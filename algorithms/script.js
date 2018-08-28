@@ -62,7 +62,6 @@ function revserseString(string){
 //***
 //****
 
-
 function drawTriangle(){
     const star = '*'; 
     for(let i = 1; i <= 4; i ++){
