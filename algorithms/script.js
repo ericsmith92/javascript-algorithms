@@ -2,6 +2,7 @@
 **1. Remove Adjacent Duplicates From a String
 **2. Fizz Buzz
 **3. Reverse a String
+**4. Draw Triangle
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -53,4 +54,18 @@ for(let i = 1; i <= 100; i ++){
 
 function revserseString(string){
     return Array.from(string).reverse().join('');
+}
+
+//4. Print out a Triangle to the console or screen like the one below
+//*
+//**
+//***
+//****
+
+
+function drawTriangle(){
+    const star = '*'; 
+    for(let i = 1; i <= 4; i ++){
+        console.log(star.repeat(i));
+    }
 }
