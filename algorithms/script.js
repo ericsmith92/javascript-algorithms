@@ -1,5 +1,6 @@
 /*TABLE OF CONTENTS
 **1. Remove Adjacent Duplicates From a String
+**2. Fizz Buzz
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -27,4 +28,22 @@ function removeDuplicates(string){
     }
     //figure out which array needs to be returned
     return (count >= 1 ? newArr : stringArr);
+}
+
+//2.Fizz Buzz, print numbers from 1 - 100
+//For numbers that are divisible by 3, write 'Fizz' in place of number
+//For numbers that are divisibible by 5, write 'Buzz' in place of number
+//For numbers that are divisible by 3 AND 5, write 'FizzBuzz' in place
+
+for(let i = 1; i <= 100; i ++){
+    //check BOTH first, otherwise other condition will always be satisfied
+    if(i % 3 == 0 && i % 5 == 0){
+        console.log('FizzBuzz');
+    }else if(i % 3 == 0){
+        console.log('Fizz');
+    }else if (i % 5 == 0){
+        console.log('Buzz');
+    } else {
+        console.log(i);
+    }
 }
