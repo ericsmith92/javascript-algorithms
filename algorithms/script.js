@@ -3,6 +3,7 @@
 **2. Fizz Buzz
 **3. Reverse a String
 **4. Draw Triangle
+**5. Concatenate array to sentence 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -67,4 +68,21 @@ function drawTriangle(){
     for(let i = 1; i <= 4; i ++){
         console.log(star.repeat(i));
     }
+}
+
+
+//5. Concatenate array to sentence 
+
+function concatenateArrayToSentence(array){
+    let sentence = '';
+
+    array.forEach(element => {
+        if(array.indexOf(element) >= array.length -1){
+            sentence += element + '.';
+        }else{
+            sentence += element + ' ';
+        }
+    });
+
+    return sentence;
 }
