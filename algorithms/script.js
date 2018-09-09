@@ -1,5 +1,6 @@
 /*TABLE OF CONTENTS
 **1. Remove Adjacent Duplicates From a String
+**2. Write a function to determine is 'x' is an integer
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -27,4 +28,10 @@ function removeDuplicates(string){
     }
     //figure out which array needs to be returned
     return (count >= 1 ? newArr : stringArr);
+}
+
+//2. Write a function to determine is 'x' is an integer
+
+function isInt(x){
+    return x.isInteger();
 }
