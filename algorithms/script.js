@@ -1,6 +1,9 @@
 /*TABLE OF CONTENTS
 **1. Remove Adjacent Duplicates From a String
-**2. Write a function to determine is 'x' is an integer
+**2. Fizz Buzz
+**3. Reverse a String
+**4. Draw Triangle
+**5. Concatenate array to sentence 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -30,8 +33,58 @@ function removeDuplicates(string){
     return (count >= 1 ? newArr : stringArr);
 }
 
-//2. Write a function to determine is 'x' is an integer
+//2.Fizz Buzz, print numbers from 1 - 100
+//For numbers that are divisible by 3, write 'Fizz' in place of number
+//For numbers that are divisibible by 5, write 'Buzz' in place of number
+//For numbers that are divisible by 3 AND 5, write 'FizzBuzz' in place
 
-function isInt(x){
-    return x.isInteger();
+for(let i = 1; i <= 100; i ++){
+    //check BOTH first, otherwise other condition will always be satisfied
+    if(i % 3 == 0 && i % 5 == 0){
+        console.log('FizzBuzz');
+    }else if(i % 3 == 0){
+        console.log('Fizz');
+    }else if (i % 5 == 0){
+        console.log('Buzz');
+    } else {
+        console.log(i);
+    }
 }
+
+//3.Write a function that takes in a string and returns the reversed string
+
+function revserseString(string){
+    return Array.from(string).reverse().join('');
+}
+
+//4. Print out a Triangle to the console or screen like the one below
+//*
+//**
+//***
+//****
+
+function drawTriangle(){
+    const star = '*'; 
+    for(let i = 1; i <= 4; i ++){
+        console.log(star.repeat(i));
+    }
+}
+
+
+//5. Concatenate array to sentence 
+
+function concatenateArrayToSentence(array){
+    let sentence = '';
+
+    array.forEach(element => {
+        if(array.indexOf(element) >= array.length -1){
+            sentence += element + '.';
+        }else{
+            sentence += element + ' ';
+        }
+    });
+
+    return sentence;
+}
+
+
