@@ -87,4 +87,34 @@ function concatenateArrayToSentence(array){
     return sentence;
 }
 
+//6. Write a function that returns the value of two number
+
+function addTwoNumbers(a, b){
+    return a + b;
+}
+
+//6.1 Write a function that returns sum of all numbers, regardless of # of params
+//lets use some new syntax, the rest parameter syntax allows as to pass an indefinite number of arguments to the function
+function addAllNumbers(...theArgs){
+    //use reduce to reduce our arguments to a single value
+    //this value also executes a provided function for each value of the array (from left-to-right)
+    //soo... for each of our arguments (numbers to sum) we add previous value to current value
+    return theArgs.reduce((previous, current) => {
+        return previous + current;
+    });
+}
+
+//now let's try the above with a foreach loop, just for fun
+
+function addAllNumbersWithForEach(...theArgs){
+    //initialize total to 0
+    let total = 0;
+
+    //forEach through args, adding each to total
+    theArgs.forEach((element) => { 
+        total += element;
+    });
+
+    return total;
+}
 
