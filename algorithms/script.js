@@ -4,6 +4,9 @@
 **3. Reverse a String
 **4. Draw Triangle
 **5. Concatenate array to sentence 
+**6. Write a function that returns the value of two number
+**7. Seats in theater
+
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -118,3 +121,16 @@ function addAllNumbersWithForEach(...theArgs){
     return total;
 }
 
+//7. Seats in theater. How many people will you disturb when you go to the bathroom?
+//11 rows, 16 columns, you're sitting in seat col 5, row 3
+//hint: 4 parameters, total col, total rows, col and row (seat) you're sitting in
+
+function blockedPeople(nCols, nRows, myCol, myRow){
+    let rowsBehind = nRows - myRow;
+    let colsToLeft = nCols - (myCol -1);
+    
+    return rowsBehind * colsToLeft;
+
+}
+
+blockedPeople(16, 11, 5, 3);
