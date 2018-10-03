@@ -126,8 +126,8 @@ function addAllNumbersWithForEach(...theArgs){
 //hint: 4 parameters, total col, total rows, col and row (seat) you're sitting in
 
 function blockedPeople(nCols, nRows, myCol, myRow){
-    let rowsBehind = nRows - myRow;
-    let colsToLeft = nCols - (myCol -1);
+    const rowsBehind = nRows - myRow;
+    const colsToLeft = nCols - (myCol -1);
     
     return rowsBehind * colsToLeft;
 
