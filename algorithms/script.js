@@ -6,6 +6,7 @@
 **5. Concatenate array to sentence 
 **6. Write a function that returns the value of two number
 **7. Seats in theater
+**8. Seek and Destroy
 
 */
 
@@ -134,3 +135,20 @@ function blockedPeople(nCols, nRows, myCol, myRow){
 }
 
 blockedPeople(16, 11, 5, 3);
+
+//8. Seek and Destroy, given two arrays, return values in initial array not found in the second one
+//ex. seekAndDestroy([3, 5, 1, 2, 2], [2, 3, 5]) should return 1
+//ex. seekAndDestroy([1, 2, 3, 5, 1, 2, 3], [2, 3]) should return [1, 5, 1]
+//hints:
+//filter()
+//includes()
+
+function seekAndDestroy(array1, array2){
+    return array1.filter(element => !array2.includes(element));
+}
+
+console.log(seekAndDestroy([3, 5, 1, 2, 2], [2, 3, 5]));
+
+
+
+
