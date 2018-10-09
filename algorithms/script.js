@@ -149,6 +149,56 @@ function seekAndDestroy(array1, array2){
 
 console.log(seekAndDestroy([3, 5, 1, 2, 2], [2, 3, 5]));
 
+//9. Draw border
+//for picture = ['abc',
+//               'ded']
+//output = ['*****',
+//          '*abc*',
+//          '*abc*',
+//          '*****']
+//hints
+//concat() - merge arrays
+//unshift() - add to begining of an array
+//push() - add to end of an array
+
+/*
+function drawBorder(array){
+    const firstLastRow = '*'.repeat(array[0].length + 2);
+
+    for(let i = 0; i < array.length; i++){
+       array[i] = String('*' + array[i] + '*');
+    }
+    
+    array.unshift(firstLastRow)
+    array.push(firstLastRow);
+
+    return array;
+
+}
+
+console.log(drawBorder(['abc','ded']));
+*/
+
+//using concat() this time 
+
+function drawBorder(array){
+    const firstLastRow = '*'.repeat(array[0].length + 2);
+
+    for(let i = 0; i < array.length; i++){
+       array[i] = '*'.concat(array[i], '*');
+    }
+    
+    array.unshift(firstLastRow)
+    array.push(firstLastRow);
+
+    return array;
+
+}
+
+console.log(drawBorder(['abc','ded']));
+
+
+
 
 
 
