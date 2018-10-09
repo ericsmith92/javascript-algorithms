@@ -7,6 +7,7 @@
 **6. Write a function that returns the value of two number
 **7. Seats in theater
 **8. Seek and Destroy
+**9. Add Two Digits
 
 */
 
@@ -196,6 +197,27 @@ function drawBorder(array){
 }
 
 console.log(drawBorder(['abc','ded']));
+
+//9. Add Two Digits
+// Input:
+//Single positive 2 digit interger ex. 29
+// Guranteed Constraints:
+// 10 <= n <= 99
+// Output:
+//the sum of it's two digits 
+// Hints:
+//split()
+//parseInt()
+//toString()
+//reduce()
+
+function addTwoDigits(int){
+    const arrayFromInt = int.toString().split('');
+
+    return parseInt(arrayFromInt[0]) + parseInt(arrayFromInt[1]);
+}
+
+console.log(addTwoDigits(29));
 
 
 
