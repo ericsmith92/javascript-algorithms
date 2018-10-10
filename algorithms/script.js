@@ -9,6 +9,7 @@
 **8. Seek and Destroy
 **9. Add Two Digits
 **10. Return largets adjacent element product
+**11. Largest strings in array of strings
 
 */
 
@@ -228,9 +229,9 @@ console.log(addTwoDigits(29));
 function adjacentElementsProduct(array){
     let largestProduct = array[0] * array[1];
 
-    //start i at 1, since we know array[0] is taken care of
+    //start i at 1 (skip 1), since we know array[0] is taken care of
     //it only multiplies to value on right, that's it.
-    //use array.length - 1, because on the right most number
+    //use array.length - 1 (skip 1), because on the right most number
     //no number to the right of it to multiply
     for(let i = 1; i < array.length - 1; i++){
         //product is equal to current index * next index 
@@ -248,8 +249,37 @@ console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3]));
 
 
 //11. Largest strings in array of strings
+//For inputArray = ['aba','aa', 'vcd', 'aba'] 
+//output should be = ['aba', 'vcd', 'aba']
 
+function allLongestStrings(array){
 
+    //first, we need to find the length of the longest string in array
+    //initialize to 0
+    let longestLength = 0;
+    //empty array for longest strings to be pushed into and later returned
+    const longestWords = [];
+
+    //iterate through array, checking each string to see if length is longer than longestLength
+    array.forEach(word =>{
+        //let's use a ternary, if longestLength is LESS than word.length, set
+        //longestLength to word.length, otherwise, return longestLength
+        longestLength = longestLength < word.length ? word.length : longestLength;
+        //once our last iteration completes, we will have the longest length stored
+    });
+
+    //check the lenth of each string against longestLength, if it matches, push into 
+    //array containing strings that equal longest length
+    array.forEach(word =>{
+        if(word.length === longestLength){
+            longestWords.push(word);
+        }
+    });
+
+    return longestWords;
+}
+
+console.log(allLongestStrings(['aba','aa', 'vcd', 'aba']));
 
 
 
