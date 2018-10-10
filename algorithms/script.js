@@ -10,6 +10,8 @@
 **9. Add Two Digits
 **10. Return largets adjacent element product
 **11. Largest strings in array of strings
+**12. Almost strictly increasing sequence
+**13. Alphabetic Shift
 
 */
 
@@ -280,6 +282,62 @@ function allLongestStrings(array){
 }
 
 console.log(allLongestStrings(['aba','aa', 'vcd', 'aba']));
+
+//12. Almost strictly increasing sequence
+//Give a sequence of integers as an array, determine whether it is possible
+//to obtan a strictly increasing sequence by removing no more than one element in the array.
+//ex. for sequence [1, 3, 2, 1] should return false
+//for sequence [1, 3, 2] should return true
+
+function almostIncreasingSequence(array){
+    //initialize count to 0
+    //if it is larger than one at the end, return false
+    let count = 0;
+
+    for(let i = 0; i < array.length; i++){
+        if(array[i] <= array[i - 1]){
+            count ++;
+            
+            if(sequence[i] <= sequence [i - 2] && sequence[i + 1] <= sequence[i - 1]){
+                //we know at this point we've hit our two mistakes
+                //so we can simply return false
+                //no need for another iteration
+                return false;
+            }
+
+        }
+    }
+
+    return count <= 1;
+}
+
+
+console.log(almostIncreasingSequence([1, 3, 2, 1]));
+console.log(almostIncreasingSequence([1, 3, 2]));
+
+
+//13. Alphabetic Shift - Given a string, replace each character by the next one in the 
+//English alphabet (z would be replaced by a).
+//Ex. input = 'crazy', output = 'dsbaz'
+//Hints:
+//split();
+//indexOf();
+//join();
+
+function alphebeticShift(string){
+    //split string into array so we can work with characters individually
+    const strArray = string.split('');
+    //iterate through array, increasing each character by 1
+    for(let i = 0; i < strArray.length; i++){
+        strArray[i] = String.fromCharCode(strArray[i].charCodeAt(0) + 1) === '{' ? 'a' : String.fromCharCode(strArray[i].charCodeAt(0) + 1);
+    }
+    
+    return strArray.join('');
+}
+
+console.log(alphebeticShift('crazy'));
+
+
 
 
 
