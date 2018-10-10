@@ -8,6 +8,7 @@
 **7. Seats in theater
 **8. Seek and Destroy
 **9. Add Two Digits
+**10. Return largets adjacent element product
 
 */
 
@@ -218,6 +219,35 @@ function addTwoDigits(int){
 }
 
 console.log(addTwoDigits(29));
+
+//10. Return largets adjacent element product
+//ex. for inputArray = [3, 6, -2, -5, 7, 3]
+//output = 21 (7 * 3)
+//hints: none, but you'll probably need to iterate through the array
+
+function adjacentElementsProduct(array){
+    let largestProduct = array[0] * array[1];
+
+    //start i at 1, since we know array[0] is taken care of
+    //it only multiplies to value on right, that's it.
+    //use array.length - 1, because on the right most number
+    //no number to the right of it to multiply
+    for(let i = 1; i < array.length - 1; i++){
+        //product is equal to current index * next index 
+        const product = array[i] + array[i + 1];
+
+        //if largestProduct less than product, return product
+        //else set it back to it's own value
+        largestProduct = largestProduct < product ? product: largestProduct;
+    }
+
+    return largestProduct;
+}
+
+console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3]));
+
+
+//11. Largest strings in array of strings
 
 
 
