@@ -13,6 +13,7 @@
 **12. Almost strictly increasing sequence
 **13. Alphabetic Shift
 **14. Check whether the given string is a subsequence of the plaintext alphabet
+**15. Odd and even sums returned in two item array 
 
 */
 
@@ -361,6 +362,36 @@ function isSubsequenceAlphabet(string){
 
 isSubsequenceAlphabet('effg');
 isSubsequenceAlphabet('abcd');
+
+//15. Odd and even sums returned in two item array
+//Several people are standing in a row and need to be divided into two teams. The first person goes into
+//team 1, the second goes into team 2, the third goes into team 1 again, the fourth into team 2, and so on.
+//You are given an array of positive integers - the weights of the people. Return an array of two
+//integers, where the first element is the total weight of team 1, and the second element is the total
+//weight of team 2 after the division is complete.
+
+//Example:
+
+//For a = [50, 60, 60, 45, 70], output should be alternatingSums(a) = [180, 105]
+
+function alternatingSums(array){
+    let evenSum = 0;
+    let oddSum = 0;
+
+    array.forEach((element, index) => {
+        if(index % 2 === 0){
+            evenSum += element;
+        }else{
+            oddSum += element;
+        }
+    });
+
+    return [evenSum, oddSum];
+}
+
+alternatingSums([50, 60, 60, 45, 70]);
+
+
 
 
 
