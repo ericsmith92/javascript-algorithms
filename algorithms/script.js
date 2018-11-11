@@ -14,6 +14,7 @@
 **13. Alphabetic Shift
 **14. Check whether the given string is a subsequence of the plaintext alphabet
 **15. Odd and even sums returned in two item array 
+**16. Are equally strong
 
 */
 
@@ -386,6 +387,41 @@ function alternatingSums(array){
 }
 
 alternatingSums([50, 60, 60, 45, 70]);
+
+//16. Are equally strong
+//Call two arms equally strong if the heaviest weight they each are able to lift are equal.
+//Call two people equall strong if their strongest arms are equally strong (the strongest arm can
+//be both the right and the left), and so are their weakest arms.
+//Given your and your friend's arms' lifting capabilities, find out if you two are equally strong
+//Example:
+//For yourLeft = 10, yourRight = 15, friendsLeft = 15, friendsRight = 10, output = true;
+//For yourLeft = 15, yourRight = 10, friendLeft = 15, friendsRight = 10, output = true;
+//For yourLeft = 15, yourRight = 10, friendsLeft = 15, friendsRight = 9, output = false;
+
+
+function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight){
+
+    //set strongest and weakest for each person to strongest and equal values,
+    //regardless of whether it's left or right
+    const yourWeakest = yourLeft <= yourRight ? yourLeft : yourRight;
+    const yourStrongest = yourLeft >= yourRight ? yourLeft : yourRight;
+    const friendsWeakest = friendsLeft <= friendsRight ? friendsLeft : friendsRight;
+    const friendsStrongest = friendsLeft >= friendsRight ? friendsLeft : friendsRight;
+    
+    //compare strongest and weakest values, this way, we CAN be comparing either right to right,
+    //and left to left, or we can be comparing right to left left to right
+    return yourStrongest === friendsStrongest && yourWeakest === friendsWeakest;
+}
+
+
+areEquallyStrong(10, 15, 15, 10);
+areEquallyStrong(15, 10, 15, 10);
+areEquallyStrong(15, 10, 15, 9);
+
+
+
+
+
 
 
 
