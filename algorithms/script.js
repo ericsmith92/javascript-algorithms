@@ -379,11 +379,7 @@ function alternatingSums(array){
     let oddSum = 0;
 
     array.forEach((element, index) => {
-        if(index % 2 === 0){
-            evenSum += element;
-        }else{
-            oddSum += element;
-        }
+        index % 2 === 0 ? evenSum += element : oddSum += element;
     });
 
     return [evenSum, oddSum];
