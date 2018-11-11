@@ -12,6 +12,7 @@
 **11. Largest strings in array of strings
 **12. Almost strictly increasing sequence
 **13. Alphabetic Shift
+**14. Check whether the given string is a subsequence of the plaintext alphabet
 
 */
 
@@ -336,6 +337,31 @@ function alphebeticShift(string){
 }
 
 console.log(alphebeticShift('crazy'));
+
+//14. Check whether the given string is a subsequence of the plaintext alphabet
+//ex. for s = 'effg', function should return false
+//    for s = 'ace', function should return true
+//Hints:
+//size property
+//charCodeAt();
+
+function isSubsequenceAlphabet(string){
+    let count = 0;
+
+    //lets loop through, comparing current with next value in array
+    for(let i = 0; i <= string.length - 1; i++){
+
+        if(string.charCodeAt(i) >= string.charCodeAt(i + 1)){
+            count++;
+        } 
+    }
+
+    return count > 0 ? false : true;
+}
+
+isSubsequenceAlphabet('effg');
+isSubsequenceAlphabet('abcd');
+
 
 
 
