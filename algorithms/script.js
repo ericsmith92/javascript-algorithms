@@ -15,6 +15,7 @@
 **14. Check whether the given string is a subsequence of the plaintext alphabet
 **15. Odd and even sums returned in two item array 
 **16. Are equally strong
+**18. Are Similar 
 
 */
 
@@ -417,6 +418,49 @@ function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight){
 areEquallyStrong(10, 15, 15, 10);
 areEquallyStrong(15, 10, 15, 10);
 areEquallyStrong(15, 10, 15, 9);
+
+//18. Are Similar 
+//Two array are called similar if one can be obtained from another by swapping at most one pair
+//of elements in one of the arrays
+//Given two arrays a and b, check whether they are similar.
+
+//Examples:
+//for a = [1, 2, 3] and b = [1, 2, 3], areSimilar(a, b) = true
+//for a = [1, 2, 3] and b = [2, 1, 3], areSimilar(a, b) = true
+//for a = [1, 2, 2] and b = [2, 1, 1], areSimilar(a, b) = false
+
+//Hints:
+// toString()
+
+function areSimilar(array1, array2){
+    //case one, convert both arrays to string & compare for exact equality
+
+    function swap(arrayToSwap){
+        const first = arrayToSwap[0];
+        const second = arrayToSwap[1];
+
+        arrayToSwap[0] = second;
+        arrayToSwap[1] = first;
+         
+        return arrayToSwap;
+    }
+
+    if(array1.toString() === array2.toString()){
+        return true;
+    } else if(array1.toString() === array2.reverse().toString()){
+        return true;
+    } else if(array1.toString() === swap(array2).toString()){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+areSimilar([1, 2, 3], [1, 2, 3]);
+areSimilar([1, 2, 3], [3, 2, 1]);
+areSimilar([1, 2, 2], [2, 1, 1]);
+
+
 
 
 
