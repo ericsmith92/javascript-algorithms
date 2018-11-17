@@ -16,6 +16,8 @@
 **15. Odd and even sums returned in two item array 
 **16. Are equally strong
 **18. Are Similar 
+**19. Minimal Moves to Stricly Increasing Sequence 
+**20. Is a string a palindrome?
 
 */
 
@@ -459,6 +461,47 @@ function areSimilar(array1, array2){
 areSimilar([1, 2, 3], [1, 2, 3]);
 areSimilar([1, 2, 3], [3, 2, 1]);
 areSimilar([1, 2, 2], [2, 1, 1]);
+
+//19. Minimal Moves to Stricly Increasing Sequence
+//You are given an array of integers. On each move you are allowed to increase exactly one of its 
+//elements by one. Find the minimal number of moves required to obtain a strictly increasing sequence
+//from the input.
+
+//Example:
+//For inputArray = [1, 1, 1] arrayChange(inputArray) = 3
+//Where 3 is total number of moves, since index 1 would need to be increased by 1 (one move), and 
+//index 2 would need to be increased by 2 (2 moves) for total of 3 moves
+
+
+function arrayChange(array){
+    let count = 0;
+
+    for(let i = 0; i <= array.length; i++){
+        let current = array[i];
+        let next = array[i + 1];
+
+        if(current === next){
+            count += 1;
+            array[i + 1] = next + 1;
+        }else if (current !== next + 1){
+
+        }
+    }
+
+    return count;
+}
+
+//20. Is a string a palindrome?
+//Ex. string = 'madam' isPalindrome(string) = true
+//Ex. string = 'Eric' isPalindrome(string) = false
+
+
+function isPalindrome(string){
+    return string.toUpperCase() === Array.from(string).reverse().join('').toUpperCase();
+}
+
+isPalindrome('madam');
+
 
 
 
