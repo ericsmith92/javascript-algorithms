@@ -477,19 +477,19 @@ function arrayChange(array){
     let count = 0;
 
     for(let i = 0; i <= array.length; i++){
-        let current = array[i];
-        let next = array[i + 1];
+        if(array[i] >= array[i + 1]){
+            const difference = (array[i] + 1) - array[i + 1];
+            array[i + 1] = array[i] + 1;
 
-        if(current === next){
-            count += 1;
-            array[i + 1] = next + 1;
-        }else if (current !== next + 1){
-
+            count += difference;
         }
     }
 
     return count;
 }
+
+
+arrayChange([1, 1, 1]);
 
 //20. Is a string a palindrome?
 //Ex. string = 'madam' isPalindrome(string) = true
@@ -497,10 +497,14 @@ function arrayChange(array){
 
 
 function isPalindrome(string){
+    //chain on toUpperCase() method on so to make comparison case insensitive
+    //alternatively, leave off so that it is case sensitive comparison
     return string.toUpperCase() === Array.from(string).reverse().join('').toUpperCase();
 }
 
 isPalindrome('madam');
+
+
 
 
 
