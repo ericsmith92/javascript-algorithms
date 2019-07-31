@@ -18,6 +18,7 @@
 **18. Are Similar 
 **19. Minimal Moves to Stricly Increasing Sequence 
 **20. Is a string a palindrome?
+**21. Array Replace
 
 */
 
@@ -503,6 +504,42 @@ function isPalindrome(string){
 }
 
 isPalindrome('madam');
+
+
+//21. Array Replace
+//Given array of integeters, replace all the occurences of elemToReplace with substitutionElem
+//Ex. For inputArray = [1, 2, 3], 
+//elemToReplace = 1 and substitutionElem = 3
+//outputArray = [3, 2, 3]
+
+function arrayReplace(elemToReplace, substitutionElem, inputArray){
+    for(let i = 0; i < inputArray.length; i++){
+        if(inputArray[i] === elemToReplace){
+            inputArray[i] = substitutionElem;
+        }
+    }
+    return inputArray;
+}
+
+console.log(arrayReplace(1, 3, [1, 2, 3]));
+
+//21.1 using foreach
+
+function arrayReplace(elemToReplace, substitutionElem, inputArray){
+    inputArray.forEach((element, index) =>{
+        if(element === elemToReplace){
+            inputArray[index] = substitutionElem;
+        }
+    });
+    return inputArray;
+}
+
+console.log(arrayReplace(1, 3, [1, 2, 3]));
+
+
+
+
+
 
 
 
