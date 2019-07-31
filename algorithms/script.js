@@ -20,6 +20,7 @@
 **20. Is a string a palindrome?
 **21. Array Replace
 **22. Candies
+**23. Chunky Monkey (split an array, return two dimensional array)
 
 */
 
@@ -546,10 +547,29 @@ console.log(arrayReplace(1, 3, [1, 2, 3]));
 //hints Math.floor()
 
 function candies(children, candies){
-
-
     return Math.floor(candies / children) * children;
 }
+
+candies(3, 10);
+
+//23. Chunky Monkey
+//Write a function that splits an array (first arg) into groups the length of the size (second arg)
+//and returns a two dimensional array
+//Ex. chunkyMonkey(['a', 'b', 'c', 'd'], 2) returns [['a', 'b'], ['c', 'd']]
+//chunkyMonkey([0, 1, 2, 3, 4, 5], 4) returns [[0, 1, 2, 3], [4, 5]]
+//hints slice
+
+function chunkyMonkey(array, n){
+
+    const firstArray = array.slice(0, n);
+    const secondArray = array.slice(n);
+
+    return [firstArray, secondArray];
+}
+
+chunkyMonkey(['a', 'b', 'c', 'd'], 2);
+chunkyMonkey([0, 1, 2, 3, 4, 5], 4);
+
 
 
 
