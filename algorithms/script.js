@@ -19,6 +19,7 @@
 **19. Minimal Moves to Stricly Increasing Sequence 
 **20. Is a string a palindrome?
 **21. Array Replace
+**22. Candies
 
 */
 
@@ -536,6 +537,19 @@ function arrayReplace(elemToReplace, substitutionElem, inputArray){
 
 console.log(arrayReplace(1, 3, [1, 2, 3]));
 
+//22. Candies
+//n children have got m pieces of candy. They want to eat as much candy as they can, but each child must
+//eat exactly the same amount of candy as any other child. Determine how many pieces of candy will be 
+//eaten by all the children together. Individual pieces of candy cannot by split.
+//Ex.
+// For n = 3 and m = 10, output should be candies (n, m) = 9
+//hints Math.floor()
+
+function candies(children, candies){
+
+
+    return Math.floor(candies / children) * children;
+}
 
 
 
