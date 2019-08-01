@@ -22,7 +22,8 @@
 **22. Candies
 **23. Chunky Monkey (split an array, return two dimensional array)
 **24. Circle Of Numbers
-
+**25. Convert String
+**26. Domain Type
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -595,24 +596,69 @@ circleOfNumbers(10, 2);
 circleOfNumbers(10, 3);
 
 
+//25. Convert String
+//For s = 'ceoydefthf5iyg5h5yts' and t = 'codefights', output convertString(s, t) = true;
+//For s = 'addbyca' and t = 'abcd', output convertString(s, t) = false;
+//for now, lets assume s is always bigger(longer) than t
+//Hints
+//concat()
+//split()
 
+const s = 'ceoydefthf5iyg5h5yts'; 
+const t = 'codefights';
 
+function convertString(s, t){
+    //first, let's turn our strings into arrays
+    const sArray = s.split('');
+    let tIndex = 0;
+    let word = '';
 
+    for(let i = 0; i < sArray.length; i++){
+        if(sArray[i] === t[tIndex]){
+            word += sArray[i];
+            tIndex++;
+            if(word === t){
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
 
+convertString(s, t);
 
+//26. Domain Type
+//for domains = ["en.wiki.org", "codefights.com", "happy.net", "code.info"]
+//domainType(domains) = ["organization", "commercial", "network", "information"]
 
+const domains = ["en.wiki.org", "codefights.com", "happy.net", "code.info"];
 
+function domainType(domains){
+    const domainTypes = [];
 
+    domains.forEach((element) => {
+        const topLevel = element.split('.')[element.split('.').length - 1];
 
+        switch(topLevel) {
+            case 'org':
+              domainTypes.push('organization');
+              break;
+            case 'com':
+                domainTypes.push('commercial');
+              break;
+            case 'net':
+                domainTypes.push('network');
+              break;
+            case 'info':
+                domainTypes.push('information');
+            break;
+            default:
+               domainTypes.push('unknown');
+          }
+    });
 
+    return domainTypes;
+}
 
-
-
-
-
-
-
-
-
-
-
+domainType(domains);
