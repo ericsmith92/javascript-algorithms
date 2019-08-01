@@ -21,6 +21,7 @@
 **21. Array Replace
 **22. Candies
 **23. Chunky Monkey (split an array, return two dimensional array)
+**24. Circle Of Numbers
 
 */
 
@@ -570,6 +571,28 @@ function chunkyMonkey(array, n){
 chunkyMonkey(['a', 'b', 'c', 'd'], 2);
 chunkyMonkey([0, 1, 2, 3, 4, 5], 4);
 
+//24. Circle Of Numbers
+//Consider the integer numbers 0 to n - 1 written down along a circle in such a way that the distance
+//between any two neighbouring numbers is equal (like the face of a clock) ***not that 0 and n-1 are neibouring, too ***
+//Given n and firstNumber, find the number which is written in the radically opposite position to first number (like 12 and 6 on a clock)
+//Ex.
+//For n = 10 and firstNumber = 2, the output of circleOfNumbers(n, firstNumber) = 7
+//Hints:
+//push()
+
+function circleOfNumbers(n, firstNumber){
+    const numArray = [];
+    const halfWay = n / 2;
+
+    for (let i = 0; i < n; i++){
+        numArray.push(i);
+    }
+
+    return firstNumber < halfWay ?  numArray[firstNumber + halfWay] :  numArray[firstNumber - halfWay];
+}
+
+circleOfNumbers(10, 2);
+circleOfNumbers(10, 3);
 
 
 
