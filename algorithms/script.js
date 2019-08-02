@@ -24,6 +24,7 @@
 **24. Circle Of Numbers
 **25. Convert String
 **26. Domain Type
+**27. Max Multiple 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -662,3 +663,22 @@ function domainType(domains){
 }
 
 domainType(domains);
+
+//27. Max Multiple
+//Given a divisor and a bound, find the largest integer N such that:
+//N is divisible by divisor
+//N is less than or equal to bound
+//N is greater than 0
+//It is Guranteed that such a number exists
+//Ex.
+//For divisor = 3 and bound = 10, maxMultiple(divisor, bound) = 9
+
+function maxMultiple(divisor, bound){
+    for(let i = bound; i > 0; i--){
+        if(i % divisor === 0 && i <= bound){
+            return i;
+        }
+    } 
+}
+
+maxMultiple(3, 10);
