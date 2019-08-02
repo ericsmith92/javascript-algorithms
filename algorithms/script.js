@@ -25,6 +25,7 @@
 **25. Convert String
 **26. Domain Type
 **27. Max Multiple 
+**28. Missing Letters
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -682,3 +683,30 @@ function maxMultiple(divisor, bound){
 }
 
 maxMultiple(3, 10);
+
+//28. Missing Letters
+//Find the missing letter in the passed letter range and return it
+//If all letters are present in the range, return undefined
+//Ex.
+//missingLetters('abce') should return 'd'
+//missingLetters('abcdefghjklmno') should return 'i'
+//missingLetters('abcdefghijklmnopqrstuvwxyz') should return undefined
+//Hints
+//split()
+
+function missingLetters(string){
+    const stringArray = string.split('');
+    let previousCharCode = '';    
+
+    for(let i = 0; i < stringArray.length; i++){
+        if(i !== 0){
+            if(stringArray[i].charCodeAt(0) !== previousCharCode + 1){
+                return String.fromCharCode(previousCharCode + 1);
+            }
+        }
+        
+        previousCharCode = stringArray[i].charCodeAt(0);
+    }   
+}
+
+missingLetters('abce');
