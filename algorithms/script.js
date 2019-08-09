@@ -26,6 +26,7 @@
 **26. Domain Type
 **27. Max Multiple 
 **28. Missing Letters
+**29. Pages numbering with ink
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -710,3 +711,34 @@ function missingLetters(string){
 }
 
 missingLetters('abce');
+
+//29. Pages numbering with ink
+/*
+You work in a company that prints and publishes books. You are responsible for designing the page
+numbering mechanism in the printer. You know how many digits a printer can print with the leftover
+ink. Now you want to write a function to determine what the last page of the book is that you can 
+number given the current page and numberOfDigits left. A page is considered numbered if it has the
+full number printed on it (e.g. if we are working with page 102 but have ink only for two digits
+then this page will no be considered numbered).
+
+It's guranteed that you can number the current page, and that you can't number the last one in the book.
+
+Ex.
+For current = 1 and numberOfDigits = 5, output should be pagesNumberingWIthInk(current, numberOfDigits) = 5
+//hints
+toString()
+*/
+
+function pagesNumberingWithInk(current, numberOfDigits){
+    while(numberOfDigits > 0){
+        numberOfDigits = numberOfDigits - current.toString().length;
+        let next = current + 1;
+        if(numberOfDigits >= next.toString().length){
+            current++;
+        }
+    }
+    return current;
+}
+
+pagesNumberingWithInk(1, 5);
+
