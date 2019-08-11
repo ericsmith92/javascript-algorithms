@@ -27,6 +27,7 @@
 **27. Max Multiple 
 **28. Missing Letters
 **29. Pages numbering with ink
+**30. Sum All Prime Numbers
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -741,4 +742,66 @@ function pagesNumberingWithInk(current, numberOfDigits){
 }
 
 pagesNumberingWithInk(1, 5);
+
+//30. Sum All Prime Numbers
+/*
+Sum all prime numbers up to and including the provided number.
+
+A prime number is defined as a number greater than one and having only two divisors, one and itself. For
+example, 2 is a prime number because it's only divisible by one and two.
+
+The provider number may not be a prime
+
+Ex.
+
+sumAllPrimes(10) should return 17
+sumAllPrimes(977) should return 73156
+
+Hints
+push()
+reduce()
+1 is not a prime number
+*/
+
+function isPrime (num) {
+    if (num <= 1) {
+      return true
+    } else if (num <= 3) {
+      return true
+    } else if (num%2 === 0 || num%3 === 0) {
+      return false
+    }
+   
+    let i = 5
+    while (i*i <= num) {
+      if (num%i === 0 || num%(i+2) === 0) {
+        return false
+      }
+      i += 6
+    }
+
+    return true
+}
+
+function sumAllPrimes(n){
+    const numArray = [];
+    const primeNumArray = [];
+
+    for(let i = 2; i <= n; i++){
+        numArray.push(i);
+    }
+
+    numArray.forEach(num => {
+        if(isPrime(num)){
+            primeNumArray.push(num);
+        }
+    });
+
+   return primeNumArray.reduce( (previous, current) => previous + current);
+
+}
+
+sumAllPrimes(10);
+sumAllPrimes(977);
+
 
