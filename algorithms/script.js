@@ -28,6 +28,7 @@
 **28. Missing Letters
 **29. Pages numbering with ink
 **30. Sum All Prime Numbers
+**31. Sort by length
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -768,13 +769,13 @@ function isPrime (num) {
       return true
     } else if (num <= 3) {
       return true
-    } else if (num%2 === 0 || num%3 === 0) {
+    } else if (num % 2 === 0 || num % 3 === 0) {
       return false
     }
    
     let i = 5
     while (i*i <= num) {
-      if (num%i === 0 || num%(i+2) === 0) {
+      if (num % i === 0 || num % (i+2) === 0) {
         return false
       }
       i += 6
@@ -803,5 +804,34 @@ function sumAllPrimes(n){
 
 sumAllPrimes(10);
 sumAllPrimes(977);
+
+//31. Sort by length
+/*
+Given an array of strings, sort them in the order of increasing lengths. If two strings have the same
+length, their relative order must be the same as in the initial array
+
+Ex.
+inputArray = ['abc', '', 'aaa', 'a', 'zz']
+
+sortByLength(inputArray) = ['', 'a', 'zz', 'abc', 'aaa']
+
+Hints:
+sort()
+*/
+
+function sortByLength(array){
+    return array.sort((a, b) => {
+        if(a.length < b.length){
+            return -1;
+        }
+        if(a.length > b.length){
+            return 1;
+        }
+    });
+}
+
+sortByLength(['abc', '', 'aaa', 'a', 'zz']);
+
+
 
 
