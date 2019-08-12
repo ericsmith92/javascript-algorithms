@@ -29,6 +29,7 @@
 **29. Pages numbering with ink
 **30. Sum All Prime Numbers
 **31. Sort by length
+**32. Stolen Lunch
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -832,6 +833,41 @@ function sortByLength(array){
 
 sortByLength(['abc', '', 'aaa', 'a', 'zz']);
 
+//32. Stolen Lunch
+/*
+There's a bully at school that steals your nephews lunch and locks it away in a locker. He leaves a 
+coded message. Your nephew gave you one of the notes to decipher, and you decide to write a function
+to help him decode them in the future. It looks like all the digits and replaced with letters, and vice 
+versa. Digit 0 is replace with 'a', 1 is replaced with 'b', and so on, with digit 9 replaced by 'j'
 
+Ex.
+note = 'you'll n4v4r 6u4ss 8t: cdja'
+stolenLunch(note) = 'you'll never guess it: 2390
 
+Hints
+split()
+hasOwnProperty()
+*/
 
+function stolenLunch(string){
+    const dictionary = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
+    const sentence = string.split(':')[0];
+    const digits = string.split(':')[1].trim();
+
+    const sentenceArray = sentence.split('').map( letter => {
+        
+        if(Number.isNaN(parseInt(letter))){
+            return letter = letter;
+        }
+        else{
+            return letter = dictionary[parseInt(letter)];
+        } 
+    });
+
+    const digitsArray = digits.split('').map( letter => dictionary.indexOf(letter) );
+
+    return sentenceArray.join('') + ': ' + digitsArray.join('');
+}
+
+stolenLunch("you'll n4v4r 6u4ss 8t: cdja");
