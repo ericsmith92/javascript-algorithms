@@ -30,6 +30,7 @@
 **30. Sum All Prime Numbers
 **31. Sort by length
 **32. Stolen Lunch
+**33. Century From Year
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -859,8 +860,7 @@ function stolenLunch(string){
         
         if(Number.isNaN(parseInt(letter))){
             return letter = letter;
-        }
-        else{
+        }else{
             return letter = dictionary[parseInt(letter)];
         } 
     });
@@ -871,3 +871,44 @@ function stolenLunch(string){
 }
 
 stolenLunch("you'll n4v4r 6u4ss 8t: cdja");
+
+//33. Century From Year
+/*
+Given a year, return the century it is in. The first century spans from the year 1 up to ad including
+the year 100, the second - from year 101 up to and including the year 200, etc.
+
+Ex.
+For year = 1905, centuryFromYear(year) = 20
+For year = 1700, centuryFromYear(year) = 17
+
+Hints
+Math.floor()
+*/
+/*
+function centuryFromYear(year){
+    //handle 1 - 100
+    if(year <= 100){
+        return 1;
+    }
+
+    if(year % 100 === 0){
+        return year / 100;
+    }else{
+        return year.toString().length > 3 ? parseInt(year.toString().substring(0, 2)) + 1 : parseInt(year.toString().charAt(0)) + 1;
+    }
+}
+
+centuryFromYear(101);
+*/
+
+function centuryFromYear(year){
+   const century = year / 100;
+
+   if( year % 100 === 0){
+       return century;
+   }
+
+   return Math.floor(century) + 1;
+}
+
+centuryFromYear(99);
