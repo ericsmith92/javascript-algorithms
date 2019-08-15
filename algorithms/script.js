@@ -31,6 +31,7 @@
 **31. Sort by length
 **32. Stolen Lunch
 **33. Century From Year
+**34. Character Parity
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -912,3 +913,37 @@ function centuryFromYear(year){
 }
 
 centuryFromYear(99);
+
+//34. Character Parity
+/*
+For symbol = '5', characterParity(symbol) === 'odd'
+For symbol = '8', characterParity(symbol) === 'even'
+For symbol = 'q', characterParity(symbol) === 'not a digit'
+
+Hints:
+isNaN()
+parseInt()
+*/
+
+function characterParity(symbol){
+    if(isNaN(parseInt(symbol))){
+        return 'not a digit'
+    }else{
+        return parseInt(symbol) % 2 === 0 ? 'even' : 'odd';
+    }
+}
+
+characterParity('5');
+characterParity('8');
+characterParity('q');
+
+//using double ternary 
+function characterParity(symbol){
+  const result = parseInt(symbol);
+
+  return isNaN(result) ? 'not a digit' : result % 2 === 0 ? 'even' : 'odd';
+}
+
+characterParity('5');
+characterParity('8');
+characterParity('q');
