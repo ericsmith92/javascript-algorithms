@@ -32,6 +32,7 @@
 **32. Stolen Lunch
 **33. Century From Year
 **34. Character Parity
+**35. Chess Board Cell Color
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -947,3 +948,55 @@ function characterParity(symbol){
 characterParity('5');
 characterParity('8');
 characterParity('q');
+
+//35. Chess Board Cell Color
+/*
+Give two cells on the standard chess board, determine whether they have the same color or not
+Ex.
+For cell1 = 'A1' and cell2 = 'C3', chessBoardCellColor(cell1, cell2) = true
+For cell1 = 'A1' and cell2 = 'H3', chessBoardCellColor(cell1, cell2) = false
+*/
+
+function determineCellColor(array){
+    if(array[0] % 2 === 0 && array[1] % 2 === 0){
+        return 'black';
+    }else if (array[0] % 2 !== 0 && array[1] % 2 !== 0){
+        return 'black';
+    }else{
+        return 'white';
+    }
+}
+
+function chessBoardCellColor(cell1, cell2){
+    const colXValues = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    
+    const cellArray1 = cell1.split('');
+    const cellArray2 = cell2.split('');
+
+    cellArray1[0] = colXValues.indexOf(cellArray1[0]) + 1;
+    cellArray2[0] = colXValues.indexOf(cellArray2[0]) + 1;
+
+    cellArray1[1] = parseInt(cellArray1[1]);
+    cellArray2[1] =  parseInt(cellArray2[1]);
+
+    return determineCellColor(cellArray1) === determineCellColor(cellArray2);
+}
+
+chessBoardCellColor('A1', 'C3');
+
+//better solution
+
+function chessBoardCellColor(cell1, cell2){
+    const board = {
+        'A' : 1,
+        'B' : 2,
+        'C' : 3,
+        'D' : 4,
+        'E' : 5,
+        'F' : 6,
+        'G' : 7,
+        'H' : 8,
+    };
+}
+
+chessBoardCellColor('A1', 'C3');
