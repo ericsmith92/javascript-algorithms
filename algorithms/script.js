@@ -34,6 +34,7 @@
 **34. Character Parity
 **35. Check Palindrome
 **36. Chess Board Cell Color
+**37. Compare Integers
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
