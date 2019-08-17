@@ -32,7 +32,8 @@
 **32. Stolen Lunch
 **33. Century From Year
 **34. Character Parity
-**35. Chess Board Cell Color
+**35. Check Palindrome
+**36. Chess Board Cell Color
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -949,7 +950,30 @@ characterParity('5');
 characterParity('8');
 characterParity('q');
 
-//35. Chess Board Cell Color
+//35. Check Palindrome
+/* 
+Given the string, check if palindrome
+We've already done this before and this is super easy, but let's do it again
+
+Ex.
+For inputString = 'aabaa' checkPalindrome(inputString) = true
+For inputString = 'abac' checkPalindrome(inputString) = false
+For inputString = 'a' checkPalindrome(inputString) = true
+
+Hints
+toLowerCase()
+split()
+reverse()
+join()
+*/
+
+function checkPalindrome(inputString){
+    return inputString.toLowerCase() === inputString.split('').reverse().join('').toLowerCase();
+}
+
+checkPalindrome('aabaa');
+
+//36. Chess Board Cell Color
 /*
 Give two cells on the standard chess board, determine whether they have the same color or not
 Ex.
