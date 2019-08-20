@@ -35,6 +35,7 @@
 **35. Check Palindrome
 **36. Chess Board Cell Color
 **37. Compare Integers
+**38. Compose Ranges
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1025,3 +1026,81 @@ function chessBoardCellColor(cell1, cell2){
 }
 
 chessBoardCellColor('A1', 'C3');
+
+//37. Compare Integers
+/* 
+Compare two integers given as strings
+
+For a = '12' and b = '13', compareIntegers(a, b) = 'less'
+For a = '875' and b = '799', compareIntegers(a, b) = 'greater'
+For a = '1000' and b = '1000', compareIntegers(a, b) = 'equal'
+*/
+
+function compareIntegers(a, b){
+    const aInt = parseInt(a);
+    const bInt = parseInt(b);
+
+    if(a < b){
+        return 'less';
+    }else if(a > b){
+        return 'greater';
+    }else{
+        return 'equal';
+    }
+}
+
+compareIntegers('12', '13');
+compareIntegers('875', '799');
+compareIntegers('1000', '1000');
+
+//38. Compose Ranges
+/*
+Give a sorted integer array that does not contain any duplicates, return a summary of the number
+ranges it contains
+
+Ex.
+For nums = [-1, 0 , 1, 2, 6, 7, 9], composeRanges(nums) = ["-1->2", "6->7", "9"]
+
+Hints
+push()
+*/
+
+/*
+Thoughts:
+-consider using map and storing the previous value of the element for comparison
+-alternatively, consider using forEach, pushing into a new array, and freely writing logic
+*/
+
+function composeRanges(nums){
+    let prev;
+    let firstInRange;
+    const ranges = [];
+
+    nums.forEach((element, index) => { 
+        if(index === 0){
+            console.log('first condition fired');
+            prev = element;
+            firstInRange = element;
+        }else if(element === prev + 1){
+            console.log('second condition fired');
+            prev = element;
+        }else{
+            console.log('catch all condition fired');
+            /*if(index === nums.length -1 && element !== prev + 1){
+                ranges.push(`${element}`);
+            }else{*/
+                ranges.push(`${firstInRange}->${prev}`);
+                firstInRange = element;
+           /* } */
+        }
+
+        prev = element;
+
+        console.log(prev);
+        console.log(firstInRange);
+    });
+
+    console.log(ranges);
+}
+
+composeRanges([-1, 0 , 1, 2, 6, 7, 9]);
