@@ -37,6 +37,7 @@
 **37. Compare Integers
 **38. Compose Ranges (return to this problem)
 **39. Confirm Ending
+**40. Contains Close Nums
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1129,3 +1130,63 @@ function confirmEnding(str, target){
 }
 
 confirmEnding("Abstraction", "action");
+
+//40. Contains Close Nums
+/*
+for nums = [0, 1, 2, 3, 5, 2] and k = 2
+containsCloseNums(nums, k) = false
+The absolute difference between the position of the two 2s is 3, which is more than K
+
+Hints
+Math.abs()
+*/
+
+function containsCloseNums(nums, k){
+    const sortedNums = [...nums].sort();
+    let prev;
+    let duplicate;
+    let indexes= [];
+
+    for(let i = 0; i < sortedNums.length; i++){
+        if(prev !== undefined){
+            if(prev === sortedNums[i]){
+                duplicate = sortedNums[i];
+            }
+        }
+        prev = sortedNums[i];
+    }
+
+    if(duplicate !== undefined){
+        for(let i = 0; i < nums.length; i++){
+            if(nums[i] === duplicate){
+                indexes.push(i);
+            }
+        }
+    }
+
+    return Math.abs(indexes[0] - indexes[1]) <= k;
+}
+
+containsCloseNums([0, 1, 2, 3, 5, 2], 2);
+containsCloseNums([0, 1, 2, 3, 5, 2], 3);
+
+//forloop inside forloop solution
+
+function containsCloseNums(nums, k){
+    for(let i = 0; i < nums.length; i++){
+        for(let j = 0; j < nums.length; j++){
+            if(i !== j){
+                if(nums[i] === nums[j]){
+                    if(Math.abs(i - j) <= k){
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+containsCloseNums([0, 1, 2, 3, 5, 2], 2);
+containsCloseNums([0, 1, 2, 3, 5, 2], 3);
