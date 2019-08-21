@@ -35,7 +35,8 @@
 **35. Check Palindrome
 **36. Chess Board Cell Color
 **37. Compare Integers
-**38. Compose Ranges
+**38. Compose Ranges (return to this problem)
+**39. Confirm Ending
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1103,4 +1104,28 @@ function composeRanges(nums){
     console.log(ranges);
 }
 
-composeRanges([-1, 0 , 1, 2, 6, 7, 9]);
+composeRanges([-1, 0 , 1, 2, 6, 7, 9]); 
+
+//**39. Confirm Ending
+/*
+Check if a string (first argument, str) ends with a given target string (second argument, target)
+This challenge can be solved with .endsWith(), but for this challenge, use one of the JavaScript 
+substring methods intead
+
+Ex.
+confirmEnding("Abstraction", "action") returns true;
+confirmEnding("Open sesame", "pen") returns false;
+
+Hints
+substring()
+*/
+
+function confirmEnding(str, target){
+    const strLength = str.length;
+    const targetLength = target.length;
+
+    return str.substring(strLength - targetLength, strLength) === target;
+
+}
+
+confirmEnding("Abstraction", "action");
