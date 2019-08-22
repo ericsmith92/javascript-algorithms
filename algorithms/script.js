@@ -38,6 +38,7 @@
 **38. Compose Ranges (return to this problem)
 **39. Confirm Ending
 **40. Contains Close Nums
+**41. Contains Duplicates
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1190,3 +1191,56 @@ function containsCloseNums(nums, k){
 
 containsCloseNums([0, 1, 2, 3, 5, 2], 2);
 containsCloseNums([0, 1, 2, 3, 5, 2], 3);
+
+//41. Contains Duplicates
+/*
+Give an array of integers, write a function that determines whether the array contains any duplicates
+Your function should return true if any element appears at least twice in the array, and it should
+return false if every element is distinct
+
+Ex.
+For a = [1, 2, 3, 1] containsDuplicates(a) = true;
+For a = [3, 1] containsDuplicates(a) = false;
+
+Hints
+sort()
+*/
+
+function containsDuplicates(array){
+    array.sort();
+    let prev;
+
+    for(let i = 0; i < array.length; i++){
+        if(prev !== undefined){
+            if(prev === array[i]){
+                return true;
+            }
+        }
+
+        prev = array[i];
+    }
+    
+    return false;
+}
+
+containsDuplicates([1, 2, 3, 1]);
+containsDuplicates([1, 2, 3, 4, 5, 6, 7, 8]);
+
+//I'm an idiot and could have got the next value in the array this way below
+
+function containsDuplicates(array){
+    array.sort();
+
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === array[i + 1]){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+containsDuplicates([1, 2, 3, 1]);
+containsDuplicates([1, 2, 3, 4, 5, 6, 7, 8]);
+
+
