@@ -39,6 +39,7 @@
 **39. Confirm Ending
 **40. Contains Close Nums
 **41. Contains Duplicates
+**42. Celcius to Fahrenheit
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1242,5 +1243,17 @@ function containsDuplicates(array){
 
 containsDuplicates([1, 2, 3, 1]);
 containsDuplicates([1, 2, 3, 4, 5, 6, 7, 8]);
+
+//42. Celcius to Fahrenheit
+/*
+-The algorithm to convert from Celcius to Fahrenheight is the temperature in 
+Celcius x 9/5, plus 32
+*/
+
+function celciusToFahrenheit(celciusTemp){
+    return celciusTemp * (9/5) + 32;
+}
+
+celciusToFahrenheit(-30);
 
 
