@@ -40,6 +40,7 @@
 **40. Contains Close Nums
 **41. Contains Duplicates
 **42. Celcius to Fahrenheit
+**43. Deposit Profit
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1256,4 +1257,24 @@ function celciusToFahrenheit(celciusTemp){
 
 celciusToFahrenheit(-30);
 
+//43. Deposit Profit
+/*
+You have deposited a specific amount of dollars into your bank account. Each year your balance
+incerases at the same growth rate. Find out how long it would take for your balance to pass a
+specific threshold with the assumption that you don't make any additional deposits.
 
+Ex.
+For deposit = 100, rate = 20, and threshold = 170, depositProfit(deposit, rate, threshold) = 3
+*/
+
+function depositProfit(deposit, rate, threshold){
+    let count = 0;
+    while(deposit < threshold){
+        deposit = deposit * (rate / 100 + 1);
+        console.log(deposit);
+        count++;
+    }
+    return count;
+}
+
+depositProfit(100, 20, 170);
