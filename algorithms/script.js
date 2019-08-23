@@ -41,6 +41,7 @@
 **41. Contains Duplicates
 **42. Celcius to Fahrenheit
 **43. Deposit Profit
+**44. Different Symbols Naive
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1271,10 +1272,59 @@ function depositProfit(deposit, rate, threshold){
     let count = 0;
     while(deposit < threshold){
         deposit = deposit * (rate / 100 + 1);
-        console.log(deposit);
         count++;
     }
     return count;
 }
 
 depositProfit(100, 20, 170);
+
+//44. Different Symbols Naive
+/* 
+Give a string, find the number of different chracters in it
+
+Ex.
+for s = 'cabca', output should be differentSymbolsNaive(s) = 3
+
+There are different characters a, b, and c
+
+Hints
+includes()
+split()
+push()
+*/
+
+function differentSymbolsNaive(str){
+    const strArray = str.split('');
+    strArray.sort();
+    const uniqueCharsArray = [];
+
+    for(let i = 0; i < strArray.length; i++){
+        if(strArray[i] !== strArray[i + 1]){
+            uniqueCharsArray.push(strArray[i]);
+        }
+    }
+
+    return uniqueCharsArray.length;
+}
+
+differentSymbolsNaive('cabca');
+differentSymbolsNaive('abhacopberh');
+
+//Alternatively, without relying on sort we could...
+
+function differentSymbolsNaive(str){
+    const strArray = str.split('');
+    const uniqueCharsArray = [];
+
+    strArray.forEach( char => {
+        if(!uniqueCharsArray.includes(char)){
+            uniqueCharsArray.push(char);
+        }
+    });
+
+    return uniqueCharsArray.length;
+}
+
+differentSymbolsNaive('cabca');
+
