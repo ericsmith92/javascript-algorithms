@@ -1328,3 +1328,24 @@ function differentSymbolsNaive(str){
 
 differentSymbolsNaive('cabca');
 
+//Alternatively, using an object
+
+/*basically, keys have to be unique in an object, so when we come accross a duplicate it is just
+reassigning an arbitrary value of one to the key, not duplicating it or adding another index like
+and array
+*/
+function differentSymbolsNaive(str){
+    const strArray = str.split('');
+    const uniqueCharsObj = {};
+
+    strArray.forEach( char => {
+        uniqueCharsObj[char] = 1;
+    });
+
+    return Object.keys(uniqueCharsObj).length;
+}
+
+differentSymbolsNaive('cabca');
+
+//Lastly, and most favorably, we could make use of Sets
+
