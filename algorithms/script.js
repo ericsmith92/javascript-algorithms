@@ -44,6 +44,7 @@
 **44. Different Symbols Naive
 **45. Digit Degree
 **46. Election Winners
+**47. Enclose in Brackets
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1428,3 +1429,22 @@ function electionWinners(votes, k){
 }
 
 electionWinners([2, 3, 5, 2], 3);
+
+//47. Enclose in Brackets
+/*
+Given a string, enclose it in round brackets
+
+Ex
+inputString = 'abacaba'
+encloseInBrackets(inputString) = '(abacaba)'
+*/
+
+function encloseInBrackets(inputString){
+    const inputArray = inputString.split('');
+
+    inputArray.unshift('(');
+    inputArray.push(')');
+    return inputArray.join('');
+}
+
+encloseInBrackets('abacaba');
