@@ -1418,11 +1418,6 @@ function electionWinners(votes, k){
 
     const mostVotes = Math.max(...votes);
 
-    //handle edge cases
-    if(votes[votes.length - 1] !== votes[votes.length - 2] && k === 0){
-        return 1;
-    }
-
     votes.forEach( element => {
         if( element + k > mostVotes){
             count++;
