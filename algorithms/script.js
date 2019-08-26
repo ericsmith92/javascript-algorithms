@@ -43,6 +43,7 @@
 **43. Deposit Profit
 **44. Different Symbols Naive
 **45. Digit Degree
+**46. Election Winners
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1392,3 +1393,43 @@ function digitDegree(n){
 digitDegree(5);
 digitDegree(100);
 digitDegree(91);
+
+//46. Election Winners
+/*
+Given an array of the numbers of votes given to reach of the candidates so far, and an integer
+k equal to the number of voters who haven't cast their vote yet, find the number of candidates who 
+still have a chance to win the election
+
+The winner of the election must secure strictly more votes than any other candidate, if two or
+more candidates receive the same (maximum) number of votes, assume there is no winner at all.
+
+Ex.
+For votes = [2, 3, 5, 2] and k = 3, electionWinners(votes, k) = 2
+*** only the candidate with 3 votes and candidate with 5 votes can win ***
+
+Hints
+sort()
+Math.max()
+*/
+
+function electionWinners(votes, k){
+    votes.sort();
+    let count = 0;
+
+    const mostVotes = Math.max(...votes);
+
+    //handle edge cases
+    if(votes[votes.length - 1] !== votes[votes.length - 2] && k === 0){
+        return 1;
+    }
+
+    votes.forEach( element => {
+        if( element + k > mostVotes){
+            count++;
+        }
+    });
+
+    return count;
+}
+
+electionWinners([2, 3, 5, 2], 3);
