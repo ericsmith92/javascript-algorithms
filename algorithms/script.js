@@ -1448,3 +1448,12 @@ function encloseInBrackets(inputString){
 }
 
 encloseInBrackets('abacaba');
+
+//OR if I wasn't overthinking it
+
+function encloseInBrackets(inputString){
+   return `(${inputString})`;
+}
+
+encloseInBrackets('abacaba');
+
