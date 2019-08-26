@@ -42,6 +42,7 @@
 **42. Celcius to Fahrenheit
 **43. Deposit Profit
 **44. Different Symbols Naive
+**45. Digit Degree
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1349,3 +1350,45 @@ differentSymbolsNaive('cabca');
 
 //Lastly, and most favorably, we could make use of Sets
 
+//45. Digit Degree
+/*
+Let's define digit degree of some positive integer as the number of times we need to replace 
+this number with the sum of its digits until we get to a one digit number
+
+Given an integer, find its digit degree
+
+For n = 5, digitDegree(n) = 0; (already 1 digit number)
+For n = 100, digitDegree(n) = 1; (1 + 0 + 0 = 1)
+For n = 91. digitDegree(n) = 2; (9 + 1 = 0 -> 1 + 0 = 1)
+
+Hints
+toString()
+parseInt()
+split()
+reduce()
+*/
+
+function reducer(arr){
+    return arr.reduce( (previous, current) => {
+        return parseInt(previous) + parseInt(current);
+    });
+}
+
+function digitDegree(n){
+    if(n <= 1){
+        return 0;
+    }else{
+        let count = 0;
+        while(n.toString().split('').length > 1){
+            const numArray = n.toString().split('');
+            n = reducer(numArray);
+
+            count++;
+        }
+        return count;
+    }
+}
+
+digitDegree(5);
+digitDegree(100);
+digitDegree(91);
