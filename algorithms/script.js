@@ -1375,7 +1375,7 @@ function reducer(arr){
 }
 
 function digitDegree(n){
-    if(n <= 1){
+    if(n <= 9){
         return 0;
     }else{
         let count = 0;
