@@ -45,6 +45,7 @@
 **45. Digit Degree
 **46. Election Winners
 **47. Enclose in Brackets
+**48. Even Digits Only
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1457,3 +1458,37 @@ function encloseInBrackets(inputString){
 
 encloseInBrackets('abacaba');
 
+//48. Even Digits Only
+/*
+For n = 248622, evenDigitsOnly(n) = true;
+For n = 642386, evenDigitsOnly(n) = false;
+
+Hints
+toString()
+split()
+every()
+parseInt()
+*/
+
+function isEven(n){
+    return parseInt(n) % 2 === 0;
+}
+
+function evenDigitsOnly(n){
+    const numArray = n.toString().split('');
+
+    return numArray.every(isEven);
+}
+
+evenDigitsOnly(248622);
+evenDigitsOnly(642386);
+
+// using an implicit return instead
+function evenDigitsOnly(n){
+    const numArray = n.toString().split('');
+
+    return numArray.every( num => parseInt(num) % 2 === 0);
+}
+
+evenDigitsOnly(248622);
+evenDigitsOnly(642386);
