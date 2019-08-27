@@ -47,6 +47,7 @@
 **47. Enclose in Brackets
 **48. Even Digits Only
 **49. Extract Each Kth element
+**50. Extract Matrix Column
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1511,3 +1512,25 @@ function extractEachKth(inputArray, k){
 }
 
 extractEachKth([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+
+//50. Extract Matrix Column
+/*
+For matrix = [[1, 1, 1, 2],[0, 5, 0, 4],[2, 1, 3, 6]];
+and column = 2
+extractMatrixColumn(matrix, column) = [1, 0, 3]
+
+Hints
+push()
+*/
+
+function extractMatrixColumn(matrix, column){
+    const matrixCol = [];
+
+    matrix.forEach( element => {
+        matrixCol.push(element[column]);
+    });
+
+    return matrixCol;
+}
+
+extractMatrixColumn([[1, 1, 1, 2],[0, 5, 0, 4],[2, 1, 3, 6]], 2);
