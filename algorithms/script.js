@@ -46,6 +46,7 @@
 **46. Election Winners
 **47. Enclose in Brackets
 **48. Even Digits Only
+**49. Extract Each Kth element
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1492,3 +1493,21 @@ function evenDigitsOnly(n){
 
 evenDigitsOnly(248622);
 evenDigitsOnly(642386);
+
+//49. Extract Each Kth element
+/*
+Given an array of integers, remove each kth (multiples of k) from it.
+
+Ex.
+For inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], & k = 3
+extractEachKth(inputArray, k) = [1, 2, 4, 5, 7, 8, 10] (all multiples of 3 have been removed)
+
+Hints
+filter()
+*/
+
+function extractEachKth(inputArray, k){
+    return inputArray.filter( element => element % k !== 0 );
+}
+
+extractEachKth([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
