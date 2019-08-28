@@ -48,6 +48,7 @@
 **48. Even Digits Only
 **49. Extract Each Kth element
 **50. Extract Matrix Column
+**51. Factorialize a Number
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1534,3 +1535,34 @@ function extractMatrixColumn(matrix, column){
 }
 
 extractMatrixColumn([[1, 1, 1, 2],[0, 5, 0, 4],[2, 1, 3, 6]], 2);
+
+//51. Factorialize a Number
+/*
+Return the factorial of the provided integer
+
+If the integer is represented with the letter n, a factorial is the product of all positive 
+integers less than or equal to n.
+
+Factorials are often represented with the shortand notation n!
+
+For Ex. 
+5! = 1 * 2 * 3 * 4 * 5 = 120
+
+Only integers greater than or equal to zero will be supplied to the function
+
+factorializeANumber(5) returns 120;
+factorializeANumber(10) returns 3628800;
+*/
+
+function factorializeANumber(n){
+    const factorArray = [];
+    for(let i = 1; i < n + 1; i++){
+        factorArray.push(i);
+    }
+
+    return factorArray.reduce( (prev, current) => prev * current );
+}
+
+factorializeANumber(5);
+factorializeANumber(10);
+
