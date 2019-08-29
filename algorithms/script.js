@@ -50,6 +50,7 @@
 **50. Extract Matrix Column
 **51. Factorialize a Number
 **52. Fancy Ride 
+**53. Fare Estimator
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1608,4 +1609,47 @@ function fancyRide(l, fares){
 }
 
 fancyRide(30, [0.3, 0.5, 0.7, 1, 1.3]);
+
+//53. Fare Estimator
+/*
+Uber is building a Fare Estimator that can tell you how much your ride will cost before you request it.
+It works by passing approximated ride distance and ride time through this formula:
+
+(Cost per minute) * (ride time) + (Cost per mile) * (ride distance)
+
+Where cost per minute and Cost per mile depend on the car type.
+
+You are one of the engineers building the Fare Estimator, so knowing cost per minute and cost per mile 
+for each car type, as well as ride distance and ride time, return the fare estimates for all car types.
+
+Ex.
+For ride_time = 30, ride_distance = 7, cost_per_minute = [0.2, 0.35, 0.4, 0.45] 
+and 
+cost_per_mile = [1.1, 1.8, 2.3, 3.5] the output should be:
+
+fareEstimator(ride_time, ride_distance, cost_per_minute, cost_per_mile) = [13.7, 23.1, 28.1, 38];
+
+Since:
+
+30 * 0.2 + 7 * 1.1 = 6 + 7.7 = 13.7
+30 * 0.35 + 7 * 1.8 = 10.5 + 12.6 = 23.1
+30 * 0.4 + 7 * 2.3 = 12 + 16.1 = 28.1
+30 * 0.45 + 7 * 3.5 = 13.5 + 24.5 = 38
+Hint 
+push()
+
+*/
+
+
+function fareEstimator(ride_time, ride_distance, cost_per_minute, cost_per_mile){
+    const costs = [];
+
+    for(let i = 0; i < cost_per_minute.length; i++){
+        costs.push((cost_per_minute[i] * ride_time) + (cost_per_mile[i] * ride_distance));
+    }
+
+    return costs;
+}
+
+fareEstimator(30, 7, [0.2, 0.35, 0.4, 0.45], [1.1, 1.8, 2.3, 3.5]);
 
