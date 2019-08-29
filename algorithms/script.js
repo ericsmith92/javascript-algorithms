@@ -49,6 +49,7 @@
 **49. Extract Each Kth element
 **50. Extract Matrix Column
 **51. Factorialize a Number
+**52. Fancy Ride 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1556,7 +1557,7 @@ factorializeANumber(10) returns 3628800;
 
 function factorializeANumber(n){
     const factorArray = [];
-    for(let i = 1; i < n + 1; i++){
+    for(let i = 1; i <= n; i++){
         factorArray.push(i);
     }
 
@@ -1565,4 +1566,46 @@ function factorializeANumber(n){
 
 factorializeANumber(5);
 factorializeANumber(10);
+
+//or without using arrays and likely faster
+
+function factorializeANumber(n){
+    let total = 1;
+    for(let i = 1; i <= n; i++){
+        total *= i;
+    }
+
+    return total;
+}
+
+factorializeANumber(5);
+factorializeANumber(10);
+
+//52. Fancy Ride 
+/*
+Being a new Uber user, you have $20 off your first ride. You want to make the most out of it and drive in
+the fanciest car you can afford, without spending any out-of-pocket money. There are 5 , options, from the 
+least to most expensive: "UberX", "UberXL", "UberPlus", "UberBlack", and "UberSuv"
+
+You know the length (l) of your ride in miles and how much one mile costs for each car. Find the best car
+you can afford.
+
+Ex.
+For l = 30 and fares = [0.3, 0.5, 0.7, 1, 1.3], fancyRide(l, fares) = "UberXL"
+
+The cost of the ride in this car would be $15, which you can afford, but "UberPlus" would cost $21, 
+which is too much
+*/
+
+function fancyRide(l, fares){
+    const rides = ["UberX", "UberXL", "UberPlus", "UberBlack", "UberSuv"];
+
+    for(let i = 0; i < fares.length; i++){
+        if( l * fares[i] > 20){
+            return rides[ i - 1];
+        }
+    }
+}
+
+fancyRide(30, [0.3, 0.5, 0.7, 1, 1.3]);
 
