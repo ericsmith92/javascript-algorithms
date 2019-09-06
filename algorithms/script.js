@@ -51,6 +51,9 @@
 **51. Factorialize a Number
 **52. Fancy Ride 
 **53. Fare Estimator
+**54. Find Closest Pair (return to this problem)
+**55. Find Email Domain
+**56. First Digit
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1653,3 +1656,91 @@ function fareEstimator(ride_time, ride_distance, cost_per_minute, cost_per_mile)
 
 fareEstimator(30, 7, [0.2, 0.35, 0.4, 0.45], [1.1, 1.8, 2.3, 3.5]);
 
+//54. Find Closest Pair
+/*
+Given an array of integers, we'd like to find the closest pair of elements that add up to a sum.
+Return the distance between the closes pair (absolute difference between the two indices).
+If there isn't a pair that adds up to the sum, return -1
+
+Ex.
+for numbers = [1, 0, 2, 4, 3, 0] and sum = 5, findClosestPair(numbers, sum) = 2
+
+1 and 4 have a sum of 5, but 2 and 3 are closer together
+
+for numbers = [2, 3, 7] and sum = 8, findClosestPair(numbers, sum) = -1, no pairs add up to 8
+
+Hints
+Math.abs()
+*/
+
+function findClosestPair(numbers, sum){
+    const pairs = [];
+
+    for(let i = 0; i < numbers.length; i++){
+        for(let j = numbers.length - 1; j >= 0; j--){
+            if( numbers[i] + numbers[j] === sum ){
+                pairs.push(numbers[i]);
+                pairs.push(numbers[j]);
+            }
+        }
+    }
+
+    return pairs;
+
+}   
+
+findClosestPair([1, 0, 2, 4, 3, 0], 5);
+
+//55. Find Email Domain
+/*
+An email address such as 'John.Smith@example.com' is made up of a local part ('John.Smith'),
+an '@' symbol, then a domain part ('example.com')
+
+The domain name part of an email address may only consist of letters, digits, hyphens, and dots.
+The local part, however, also allows a lot of different special characters. Here you can look at
+several examples of correct and incorrect email addresses.
+
+Given a valid email address, find its domain part
+
+Ex.
+For address = 'prettyandsimple@example.com', the output should be findEmailDomain(address) = 'example.com'
+
+For address = '<>[];;@'!#$%&+*{}|~@example.com', the output should be findEmailDomain(address) = 'example.org'
+
+Hints
+lastIndexOf()
+slice()
+*/
+
+function findEmailDomain(address){
+    const lastIndex = address.lastIndexOf('@');
+    return address.slice(lastIndex + 1);
+}
+
+findEmailDomain('prettyandsimple@example.com');
+findEmailDomain("<>[];;@'!#$%&+*{}|~@example.org");
+
+//56. First Digit
+/*
+For inputString = 'var_1__Int', firstDigit(inputString) = '1'
+For inputString = 'q2q-q', firstDigit(inputString) = '2'
+For inputString = '0ss', firstDigit(inputString) = '0'
+
+Hints
+split()
+includes()
+*/
+
+function firstDigit(inputString){
+    const inputStringArray = inputString.split('');
+
+    for(let i = 0; i < inputStringArray.length; i++){
+        if(!Number.isNaN(parseInt(inputStringArray[i]))){
+            return inputStringArray[i];
+        }
+    }
+}
+
+firstDigit('var_1__Int');
+firstDigit('q2q-q');
+firstDigit('0ss');
