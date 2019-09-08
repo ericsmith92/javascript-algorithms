@@ -54,6 +54,7 @@
 **54. Find Closest Pair (return to this problem)
 **55. Find Email Domain
 **56. First Digit
+**57. First Duplicate
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1744,3 +1745,75 @@ function firstDigit(inputString){
 firstDigit('var_1__Int');
 firstDigit('q2q-q');
 firstDigit('0ss');
+
+//isNaN() also seems to work without parseInt
+
+function firstDigit(inputString){
+    const inputStringArray = inputString.split('');
+
+    for(let i = 0; i < inputStringArray.length; i++){
+        if(!Number.isNaN(inputStringArray[i])){
+            return inputStringArray[i];
+        }
+    }
+}
+
+firstDigit('var_1__Int');
+firstDigit('q2q-q');
+firstDigit('0ss');
+
+//57. First Duplicate
+/*
+Given an array that contains only numbers in the range from 1 to a.length, find the first duplicate
+number for which the second occurence has the minimal index. In other words, if there are more than 1
+duplicate numbers, return the number for which the second occurence has a smaller index than the second 
+occurence of the other number does. If there are no such elements, return -1
+
+Ex.
+for a [2, 1, 3, 5, 3, 2] , firstDuplicate(a) = 3
+
+for a [2, 4, 3, 5, 1], firstDuplicate(a) = -1
+
+Hints 
+hasOwnProperty
+*/
+
+function firstDuplicate(a){
+    const aSorted = [...a].sort();
+    const duplicates = [];
+
+    for(let i = 0; i < aSorted.length; i++){
+        if(aSorted[i] === aSorted[i + 1]){
+            duplicates.push(aSorted[i]);
+        }
+    } 
+
+    if(duplicates.length === 0){
+        return -1;
+    }
+
+    return a.lastIndexOf(duplicates[0]) < a.lastIndexOf(duplicates[1]) ?  duplicates[0] : duplicates[1];
+}
+
+firstDuplicate([2, 1, 3, 5, 3, 2]);
+firstDuplicate([2, 4, 3, 5, 1]);
+
+//lets try working with an object
+function firstDuplicate(a){
+    const firstDup = {};
+
+    for(let i = 0; i < a.length; i++){
+        if(firstDup.hasOwnProperty(a[i])){
+            return a[i];
+        }else{
+            firstDup[a[i]] = a[i];
+        }
+    } 
+
+    return -1;
+}
+
+firstDuplicate([2, 1, 3, 5, 3, 2]);
+firstDuplicate([2, 4, 3, 5, 1]);
+
+//much cleaner
