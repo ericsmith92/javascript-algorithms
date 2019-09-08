@@ -55,6 +55,7 @@
 **55. Find Email Domain
 **56. First Digit
 **57. First Duplicate
+**58. First Not Repeating Character
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1817,3 +1818,49 @@ firstDuplicate([2, 1, 3, 5, 3, 2]);
 firstDuplicate([2, 4, 3, 5, 1]);
 
 //much cleaner
+
+//58. First Not Repeating Character
+/* 
+Write a solution that iterates over the string once and uses O(1) additional memeory, since this is what
+you would be asked to do during a real interview
+
+Given a string s, find and return the first instance of a non-repeating character in it. If there is no 
+such character, return '_'.
+
+Ex.
+For s = 'abacabad', firstNotRepeatingCharacter(s) = 'c'
+
+There are two non-repeating chars in the string, 'c' and 'd', but 'c' appears first
+
+For s = 'abacabaabacaba', firstNotRepeatingCharacter(s) = '_'
+
+There are no chars in the string that don't repeat
+
+Hints
+split()
+hasOwnProperty()
+
+*/
+
+function firstNotRepeatingCharacter(s){
+    const strArray = s.split('');
+    const duplicates = {};
+
+    for(let i = 0; i < strArray.length; i++){
+        if(duplicates.hasOwnProperty(strArray[i])){
+            delete duplicates[strArray[i]];
+        }else{
+            duplicates[strArray[i]] = strArray[i];
+        }
+    }
+    
+    if(Object.keys(duplicates).length){
+        return duplicates[Object.keys(duplicates)[0]];
+    }else{
+        return '_';
+    }
+    
+}
+
+firstNotRepeatingCharacter('abacabad');
+firstNotRepeatingCharacter('abacabaabacaba');
