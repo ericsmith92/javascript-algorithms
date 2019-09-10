@@ -56,7 +56,8 @@
 **56. First Digit
 **57. First Duplicate
 **58. First Not Repeating Character
-**59. Flatten Array
+**59. Flatten Array (with recursion :) Yay!)
+**60. Growing Plant
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1937,3 +1938,33 @@ function steamRollArray(arr){
 
 steamRollArray([[['a']], [['b']]]);
 steamRollArray([1, [2], [3, [[4]]]]);
+
+//60. Growing Plant
+/*
+Each day a plant is growing by upSpeed meters. Each night, that plant's height decreases by downSpeed
+meters. Initially, the plant is 0 meters tall. We plant the seed at the beginning of the day. We want
+to know when the height of the plant will reach a certain level.
+
+for upSpeed = 100, downSpeed = 10 and desired height = 910
+
+growingPlant(upSpeed, downSpeed, desiredHeight) = 10;
+*/
+
+function growingPlant(upSpeed, downSpeed, desiredHeight){
+    let days = 0;
+    let height = 0;
+
+    while(height < desiredHeight){
+        height += upSpeed;
+        days++;
+
+        if(height < desiredHeight){
+            height - downSpeed;
+        }
+    }
+
+    return days;
+}
+
+growingPlant(100, 10, 910);
+
