@@ -58,6 +58,7 @@
 **58. First Not Repeating Character
 **59. Flatten Array (with recursion :) Yay!)
 **60. Growing Plant
+**61. House Number Sum
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1959,7 +1960,7 @@ function growingPlant(upSpeed, downSpeed, desiredHeight){
         days++;
 
         if(height < desiredHeight){
-            height - downSpeed;
+            height -= downSpeed;
         }
     }
 
@@ -1967,4 +1968,28 @@ function growingPlant(upSpeed, downSpeed, desiredHeight){
 }
 
 growingPlant(100, 10, 910);
+
+//61. House Number Sum
+/*
+Return the sum of all numbers in an array that appear before 0
+
+Ex.
+for inputArray = [5, 1, 2, 3, 0, 1, 5, 0, 2] houseNumbersSum(inputArray) = 11
+
+5 + 1 + 2 + 3 = 11
+*/
+
+function houseNumbersSum(arr){
+    let total = 0;
+
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === 0){
+            return total;
+        }else{
+            total += arr[i];
+        }
+    }
+}
+
+houseNumbersSum([5, 1, 2, 3, 0, 1, 5, 0, 2]);
 
