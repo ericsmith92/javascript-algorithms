@@ -56,6 +56,7 @@
 **56. First Digit
 **57. First Duplicate
 **58. First Not Repeating Character
+**59. Flatten Array
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1864,3 +1865,75 @@ function firstNotRepeatingCharacter(s){
 
 firstNotRepeatingCharacter('abacabad');
 firstNotRepeatingCharacter('abacabaabacaba');
+
+//59. Flatten Array
+/*
+Flatten a nested array. You must account for varying levels of nesting.
+
+Ex.
+steamRollArray([[['a']], [['b']]]) = ["a", "b"]
+steamRollArray([1, [2], [3, [[4]]]]) = [1, 2, 3, 4]
+
+Hints
+isArray()
+push()
+*/
+
+
+function steamRollArray(arr) {
+    return arr.reduce(function (flat, toFlatten) {
+      return flat.concat(Array.isArray(toFlatten) ? steamRollArray(toFlatten) : toFlatten);
+    }, []);
+  }
+
+steamRollArray([[['a']], [['b']]]);
+steamRollArray([1, [2], [3, [[4]]]]);
+
+//the above uses recursion (calls itself until job is done)
+//to better understand, lets solve the above recursively different ways
+
+function steamRollArray(arr){
+    const flatArr = [];
+
+    //kick off entire thing by calling our flatten function
+    flatten(arr);
+
+    function flatten(arr){
+        //if element is array, call flatten on it again
+        for(let i = 0; i < arr.length; i++){
+            if(Array.isArray(arr[i])){
+                flatten(arr[i]);
+            }else{
+                //otherwise, push into new array
+                flatArr.push(arr[i]);
+            }
+        }    
+    }
+    return flatArr;
+}
+
+steamRollArray([[['a']], [['b']]]);
+steamRollArray([1, [2], [3, [[4]]]]);
+
+//again with foreach to really drive the point home
+
+function steamRollArray(arr){
+    const flatArr =  [];
+
+    flatten(arr);
+
+    function flatten(arr){
+        arr.forEach( element => {
+            if(Array.isArray(element)){
+                flatten(element);
+            }else{
+                flatArr.push(element);
+            }
+        });
+    }
+
+    return flatArr;
+}
+
+steamRollArray([[['a']], [['b']]]);
+steamRollArray([1, [2], [3, [[4]]]]);
