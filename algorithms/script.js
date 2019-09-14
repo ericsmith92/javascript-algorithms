@@ -61,6 +61,7 @@
 **61. House Number Sum
 **62. HTML End Tag By Start Tag
 **63. Incorrect Password Attempts
+**64. Integer To String of Fixed Width 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2082,7 +2083,77 @@ function incorrectPasscodeAttempts(passcode, attempts){
 
 incorrectPasscodeAttempts(passcode, attempts);
 
-//what's the rule we can implement to be better in the future?
+//what's the rule here that we can implement to be better in the future?
 //In this case, we don't know the length of our attemps array, other than it should be atleast 10 values
 //we are looking for any streak of failed attempts exceding our number (10) between successful attempts
 //in these kind of cases, we should use an incremeter solution as above
+
+//64. Integer To String of Fixed Width 
+/* 
+Given a positive integer number and a certain length, we need to modify the given number to have a 
+specified length. We are allowed to do that either by cutting out leading digits (if the number needs to
+be shortned) or by adding 0s in front of the original number
+
+Examples
+for number = 1234 and width = 2, output integerToStringOfFixedWidth(number, width) = '34'
+for number = 1234 and width = 4, output integerToStringOfFixedWidth(number, width) = '1234'
+for number = 1234 and width = 5, output integerToStringOfFixedWidth(number, width) = '01234'
+
+Hints
+concat()
+subString()
+toString()
+*/
+
+function integerToStringOfFixedWidth(number, width){
+    const numString = number.toString();
+
+    if(numString.length === width){
+        return numString;
+    }else if(numString.length > width){
+        return numString.substring(width);
+    }else if(numString.length < width){
+        let frontStr = '';
+
+        while(width - numString.length > 0){
+            frontStr += '0';
+            width--;
+        }
+
+        return frontStr.concat(numString);
+    }
+}
+
+integerToStringOfFixedWidth(1234, 2);
+integerToStringOfFixedWidth(1234, 4);
+integerToStringOfFixedWidth(1234, 5);
+
+
+//lets refactor a bit
+
+function integerToStringOfFixedWidth(number, width){
+    const numString = number.toString();
+
+    if(numString.length > width){
+        return numString.substring(width);
+    }
+    
+    if(numString.length < width){
+        let frontStr = '';
+
+        while(width - numString.length > 0){
+            frontStr += '0';
+            width--;
+        }
+
+        return frontStr.concat(numString);
+    }
+
+    return numString;
+}
+
+integerToStringOfFixedWidth(1234, 2);
+integerToStringOfFixedWidth(1234, 4);
+integerToStringOfFixedWidth(1234, 5);
+
+
