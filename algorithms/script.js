@@ -59,6 +59,7 @@
 **59. Flatten Array (with recursion :) Yay!)
 **60. Growing Plant
 **61. House Number Sum
+**62. HTML End Tag By Start Tag
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -1993,3 +1994,45 @@ function houseNumbersSum(arr){
 
 houseNumbersSum([5, 1, 2, 3, 0, 1, 5, 0, 2]);
 
+//62. HTML End Tag By Start Tag
+/*
+You are implementing your own HTML editor. To make it more comfortable for developers you would like to
+add an auto-complete feature to it. Given the starting HTML tag, find the appropriate end tag which your
+editor should propose.
+
+Example 
+for startTag = "<button type='button' disabled>", the output should be 
+htmlEndTagByStartTag(startTag) = "</button>"
+
+for startTag = "<i>", the output should be 
+htmlEndTagByStartTag(startTag) = "</i>"
+
+Hints
+split()
+toString()
+*/
+
+function htmlEndTagByStartTag(startTag){
+    const tagArr = startTag.split('');
+    let partialTag = '';
+
+    for(let i = 0; i < tagArr.length; i++){
+        if( tagArr[i] === ' ' || tagArr[i] === '>'){
+            return buildClosingTag(partialTag);
+        }else{
+            partialTag += tagArr[i];
+        }
+    }
+
+    function buildClosingTag(tag){
+        const endTagArr = tag.split('');
+        endTagArr.splice(1, 0, '/');
+        endTagArr.push('>');
+
+        return endTagArr.join('');
+    }
+
+}   
+
+htmlEndTagByStartTag("<button type='button' disabled>");
+htmlEndTagByStartTag("<i>");
