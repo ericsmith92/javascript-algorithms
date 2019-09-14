@@ -60,6 +60,7 @@
 **60. Growing Plant
 **61. House Number Sum
 **62. HTML End Tag By Start Tag
+**63. Incorrect Password Attempts
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2036,3 +2037,52 @@ function htmlEndTagByStartTag(startTag){
 
 htmlEndTagByStartTag("<button type='button' disabled>");
 htmlEndTagByStartTag("<i>");
+
+//63. Incorrect Password Attempts
+/*
+Opening a dropbox mobile app requires a four-digit passcode. For security reasons, the account is locked
+after 10 consecutive failed passcode attempts. We need to implement a function that given an array of 
+attempts made throughout the day and the correct passcode checks to see if the device should be locked,
+i.e. 10 or more consecutive failed passcode attempts were made.
+
+Ex.
+for passcode = '1111'
+
+and
+
+attempts = ['1111', '4444', '3333', '5555', '6666', '7777', '8888', '9999', '1010', '5432', '8765', '1111'];
+
+incorrectPasscodeAttempts(passcode, attempts) = true;
+*/
+
+const passcode = '1111';
+const attempts = ['1111', '4444', '3333', '5555', '6666', '7777', '8888', '9999', '1010', '5432', '6563', '1111'];
+
+function incorrectPasscodeAttempts(passcode, attempts){
+    
+    if(attempts.indexOf(passcode) === -1){
+        return true;
+    }
+   
+   let failedAttempts = 0;
+
+   for(let i = 0; i < attempts.length; i++){
+        if(attempts[i] === passcode){
+            failedAttempts = 0;
+        }
+
+        if(failedAttempts === 10){
+           return true;
+       }
+
+       failedAttempts++;
+   }
+
+}
+
+incorrectPasscodeAttempts(passcode, attempts);
+
+//what's the rule we can implement to be better in the future?
+//In this case, we don't know the length of our attemps array, other than it should be atleast 10 values
+//we are looking for any streak of failed attempts exceding our number (10) between successful attempts
+//in these kind of cases, we should use an incremeter solution as above
