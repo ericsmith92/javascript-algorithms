@@ -62,6 +62,7 @@
 **62. HTML End Tag By Start Tag
 **63. Incorrect Password Attempts
 **64. Integer To String of Fixed Width 
+**65. Internal Backups
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2156,4 +2157,49 @@ integerToStringOfFixedWidth(1234, 2);
 integerToStringOfFixedWidth(1234, 4);
 integerToStringOfFixedWidth(1234, 5);
 
+//65. Internal Backups
+/*
+One of the easiest ways to back up files is with incremental backups. This method only backs up files
+that have changed since last backup.
 
+You are given a list of changes that were made to the files in your database, where for each valid i, 
+changes[i][0] is the timestamp of the time the change was made, and changes[i][1] is the file id.
+
+Knowing the timestamp of the last backup lastBackupTime, your task is to find the files which should
+be included in the next backup. Return the ids of the files that should be backed up as an array sorted
+in ascending order.
+
+Example
+For lastBackupTime = 461620205
+
+changes = [
+    [461620203, 1], 
+    [461620204, 2], 
+    [461620205, 6], 
+    [461620206, 5], 
+    [461620207, 3],
+    [461620207, 5],
+    [461620208, 1]
+]
+
+incrementalBackups(lastBackUpime, changes) = [1, 3, 5]
+
+Hints
+includes()
+push()
+sort()
+*/
+
+function incrementalBackups(changes, lastBackupTime){
+    const requireBackup = [];
+
+    changes.forEach( element => {
+        if(element[0] > lastBackupTime && !requireBackup.includes(element[1])){
+            requireBackup.push(element[1]);
+        }
+    });
+
+    return requireBackup.sort();
+}
+
+incrementalBackups([[461620203, 1], [461620204, 2], [461620205, 6], [461620206, 5], [461620207, 3], [461620207, 5], [461620208, 1]], 461620205);
