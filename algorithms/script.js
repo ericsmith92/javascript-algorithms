@@ -2218,3 +2218,26 @@ function incrementalBackups(changes, lastBackupTime){
 
 incrementalBackups([[461620203, 1], [461620204, 2], [461620205, 6], [461620206, 5], [461620207, 3], [461620207, 5], [461620208, 1]], 461620205);
 
+//lastly, lets try using an object and just overwritting the values
+
+console.time(incrementalBackups);
+
+function incrementalBackups(changes, lastBackupTime){
+    const requireBackup = {};
+
+    changes.forEach( element => {
+        if(element[0] > lastBackupTime){
+            requireBackup[element[1]] = element[1];
+        }
+    });
+
+    return Object.keys(requireBackup).sort();
+}
+
+incrementalBackups([[461620203, 1], [461620204, 2], [461620205, 6], [461620206, 5], [461620207, 3], [461620207, 5], [461620208, 1]], 461620205);
+
+console.timeEnd(incrementalBackups);
+
+//this might not actually be faster
+//BUT remember, when you're using includes() on an array before pushing, using objects is an option
+
