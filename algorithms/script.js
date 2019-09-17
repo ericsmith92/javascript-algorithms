@@ -2203,3 +2203,18 @@ function incrementalBackups(changes, lastBackupTime){
 }
 
 incrementalBackups([[461620203, 1], [461620204, 2], [461620205, 6], [461620206, 5], [461620207, 3], [461620207, 5], [461620208, 1]], 461620205);
+
+function incrementalBackups(changes, lastBackupTime){
+    const requireBackup = {};
+
+    changes.forEach( element => {
+        if(element[0] > lastBackupTime && !requireBackup.hasOwnProperty(element[1])){
+            requireBackup[element[1]] = element[1];
+        }
+    });
+
+    return Object.keys(requireBackup).sort();
+}
+
+incrementalBackups([[461620203, 1], [461620204, 2], [461620205, 6], [461620206, 5], [461620207, 3], [461620207, 5], [461620208, 1]], 461620205);
+
