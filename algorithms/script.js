@@ -63,6 +63,7 @@
 **63. Incorrect Password Attempts
 **64. Integer To String of Fixed Width 
 **65. Internal Backups
+**66. Is Lucky
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2241,3 +2242,26 @@ console.timeEnd(incrementalBackups);
 //this might not actually be faster
 //BUT remember, when you're using includes() on an array before pushing, using objects is an option
 
+//66. Is Lucky
+/*
+Ticket numbers usually consist of an even number of digits. A ticket number is considered lucky if the sum
+of the firt half of the digits is equal to the sum of the second half
+
+Ex.
+for n = 1230, isLucky(n) = true
+for n = 239017, isLucky(n) = false
+*/
+
+function isLucky(n){
+    const ticketNumString = n.toString();
+    const firstHalf = ticketNumString.substring(0, ticketNumString.length / 2);
+    const secondHalf = ticketNumString.substring(ticketNumString.length / 2);
+    
+    const firstHalfSum = firstHalf.split('').reduce( (a, b) => parseInt(a) + parseInt(b));
+    const secondHalfSum = secondHalf.split('').reduce( (a, b) => parseInt(a) + parseInt(b));
+    
+    return firstHalfSum === secondHalfSum;
+}
+
+isLucky(1230);
+isLucky(239017);
