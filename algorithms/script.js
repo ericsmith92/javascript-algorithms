@@ -64,6 +64,7 @@
 **64. Integer To String of Fixed Width 
 **65. Internal Backups
 **66. Is Lucky
+**67. Is Tandem Repeat
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2265,3 +2266,34 @@ function isLucky(n){
 
 isLucky(1230);
 isLucky(239017);
+
+//67. Is Tandem Repeat
+/*
+Determine whether the given string can be obtained by one concatenation of some string to itself
+
+Ex.
+inputString = 'tandemtandem', output should be isTandemRepeat(inputString) = true;
+inputString = '2w2ww', output should be isTandemRepeat(inputString) = false;
+inputString = 'qqq', output should be isTandemRepeat(inputString) = false;
+
+basically, cut original string in half, and see if firsthalf = secondhalf
+
+Hints:
+slice()
+*/
+
+function isTandemRepeat(inputString){
+    const halfway = inputString.length / 2;
+
+    if(halfway % 2 === 0){
+        const firsthalf = inputString.slice(0, halfway);
+        const secondhalf = inputString.slice(halfway, inputString.length);
+
+        return firsthalf === secondhalf;
+    }
+
+    return false;
+}
+
+isTandemRepeat('tandemtandem');
+isTandemRepeat('2w2ww');
