@@ -65,6 +65,7 @@
 **65. Internal Backups
 **66. Is Lucky
 **67. Is Tandem Repeat
+**68. Larges of Four
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2285,6 +2286,7 @@ slice()
 function isTandemRepeat(inputString){
     const halfway = inputString.length / 2;
 
+    //also could do just inputString.length, but we already have this instance
     if(halfway % 2 === 0){
         const firsthalf = inputString.slice(0, halfway);
         const secondhalf = inputString.slice(halfway, inputString.length);
@@ -2297,3 +2299,33 @@ function isTandemRepeat(inputString){
 
 isTandemRepeat('tandemtandem');
 isTandemRepeat('2w2ww');
+
+//68. Larges of Four
+/*
+Return an array consisting of the largest number from each provided sub-array. For simplicity,
+the provided array will contain exactly for sub-arrays.
+
+Ex.
+largestOfFour([[4,5,1,3],[13,27,18,26],[32,35,37,39],[1000,1001,857,1]]) returns [27, 5, 39, 1001];
+*/
+
+function largestOfFour(arr){
+    const largestNums = [];
+    
+    for(let i = 0; i < arr.length; i++){
+        const nestedArr = arr[i];
+        let largest = 0;
+        
+        for(let j = 0; j < nestedArr.length; j++){
+            largest = nestedArr[j] > largest ? nestedArr[j] : largest;
+
+            if(j === nestedArr.length - 1){
+                largestNums.push(largest);
+            }
+        }
+    }
+
+    return largestNums;
+}
+
+largestOfFour([[4,5,1,3],[13,27,18,26],[32,35,37,39],[1000,1001,857,1]]);
