@@ -65,7 +65,8 @@
 **65. Internal Backups
 **66. Is Lucky
 **67. Is Tandem Repeat
-**68. Larges of Four
+**68. Largest of Four
+**69. Largest Number
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2300,7 +2301,7 @@ function isTandemRepeat(inputString){
 isTandemRepeat('tandemtandem');
 isTandemRepeat('2w2ww');
 
-//68. Larges of Four
+//68. Largest of Four
 /*
 Return an array consisting of the largest number from each provided sub-array. For simplicity,
 the provided array will contain exactly for sub-arrays.
@@ -2318,14 +2319,36 @@ function largestOfFour(arr){
         
         for(let j = 0; j < nestedArr.length; j++){
             largest = nestedArr[j] > largest ? nestedArr[j] : largest;
-
-            if(j === nestedArr.length - 1){
-                largestNums.push(largest);
-            }
         }
+
+        largestNums.push(largest);
     }
 
     return largestNums;
 }
 
 largestOfFour([[4,5,1,3],[13,27,18,26],[32,35,37,39],[1000,1001,857,1]]);
+
+//69. Largest Number
+/*
+For n = 2, the output should be largestNumber(n) = 99
+(so basically, n repsents number of digts)
+
+Hints:
+concat()
+parseInt()
+*/
+
+function largestNumber(n){
+    let nines = '';
+
+    while(n > 0){
+        nines+='9';
+        n--;
+    }
+
+    return parseInt(nines);
+}
+
+largestNumber(2);
+
