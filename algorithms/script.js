@@ -67,6 +67,7 @@
 **67. Is Tandem Repeat
 **68. Largest of Four
 **69. Largest Number
+**70. Proper Noun Correction
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2351,4 +2352,61 @@ function largestNumber(n){
 }
 
 largestNumber(2);
+
+//we can also leverage string repeat method
+
+
+function largestNumber(n){
+    let nines = '9'.repeat(n);
+
+    return parseInt(nines);
+}
+
+largestNumber(2);
+
+//70. Proper Noun Correction
+/*
+For a porper noun (name) ensure first letter is capitalized and the rest are lowercase
+
+Ex.
+For noun = 'pARiS', properNounCorrection(noun) = 'Paris',
+For noun = 'John', properNounCorrection(noun) = 'John'
+*/
+
+function properNounCorrection(noun){
+    const nounArr = noun.split('');
+
+    for(let i = 0; i < nounArr.length; i++){
+        if(i === 0){
+            nounArr[i] = nounArr[i].toUpperCase();
+        }else{
+            nounArr[i] = nounArr[i].toLowerCase();
+        }
+    }
+
+    return nounArr.join('');
+}
+
+properNounCorrection('pARiS'); 
+properNounCorrection('John'); 
+
+
+//much better solution below
+
+function properNounCorrection(noun){
+    const firstChar = noun[0].toUpperCase();
+    const restOfWord = noun.slice(1, noun.length).toLowerCase();
+
+    return firstChar.concat(restOfWord);
+}
+
+properNounCorrection('pARiS'); 
+properNounCorrection('John'); 
+
+/*
+What's the rule here? We have access to indexes and strings, and in this case there was no need to 
+change it to an array, loop through it, and perform all sorts of checks. If we're working with a string
+and we always know what indices we need to modify, consider not converting to array and make better
+use of string methods available to us.
+*/
 
