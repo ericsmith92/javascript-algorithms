@@ -69,6 +69,7 @@
 **69. Largest Number
 **70. Proper Noun Correction
 **71. Rating Threshold
+**72. Reflect String
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2444,3 +2445,26 @@ function ratingThreshold(threshold, ratings){
 }
 
 ratingThreshold(3.5, [[3, 4], [3, 3, 3, 4], [4]]);
+
+//72. Reflect String
+/*
+Define an alphabet reflection as follows: a turns into z, b turns into y,..., n turns into m, 
+m turns into n, a turns into a
+
+Ex.
+for inputString = 'name', reflectString(inputString) = 'mznv';
+*/
+
+function reflectString(inputString){
+    const dictionary = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    const inputArray = inputString.split('');
+
+    for(let i = 0; i < inputArray.length; i++){
+        let newIndex = (dictionary.length - 1) - dictionary.indexOf(inputArray[i]);
+        inputArray[i] = dictionary[newIndex];
+    }
+
+    return inputArray.join('');
+}
+
+reflectString('name');
