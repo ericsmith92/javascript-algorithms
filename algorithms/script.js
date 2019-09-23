@@ -68,6 +68,7 @@
 **68. Largest of Four
 **69. Largest Number
 **70. Proper Noun Correction
+**71. Rating Threshold
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2410,3 +2411,36 @@ and we always know what indices we need to modify, consider not converting to ar
 use of string methods available to us.
 */
 
+//71. Rating Threshold
+/*
+Users are able to rate Pros based on their experience working with them. Each rating is an integer
+ranging from 1 to 5, and all ratings are averaged to produce a single number rating for any given
+pro. Those Pros who have rating lower than a specified threshold are manuall reviewed by staff to
+ensure high quality service.
+
+You're given a list of ratings for some Pros. FInd out which Pros should manually reviewed.
+
+Ex.
+for threshold = 3.5 and ratings = [[3, 4], [3, 3, 3, 4], [4]], ratingThreshold(threshold, ratings) = [1]
+
+First pros rating is 3.5, second is 3.25 (needs review), and last is 4
+
+Hints
+push()
+*/
+
+function ratingThreshold(threshold, ratings){
+    const manualReviewIndices = [];
+
+    ratings.forEach( (element, index) => {
+        let total = element.reduce( (prev, current) => prev + current );
+        const average = total / element.length;
+        if(average < threshold){
+            manualReviewIndices.push(index);
+        }
+    });
+
+    return manualReviewIndices;
+}
+
+ratingThreshold(3.5, [[3, 4], [3, 3, 3, 4], [4]]);
