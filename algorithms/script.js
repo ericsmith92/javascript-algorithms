@@ -70,6 +70,7 @@
 **70. Proper Noun Correction
 **71. Rating Threshold
 **72. Reflect String
+**73. Sort by Height
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2468,3 +2469,31 @@ function reflectString(inputString){
 }
 
 reflectString('name');
+
+//73. Sort by Height
+/* 
+Some people are standing in a row in a park. There are trees between them which cannot be moved. Your
+task is to rearrange the people by their heights in a non-descending order without moving the trees.
+
+Example
+for a [-1, 150, 190, 170, -1, -1, 160, 180], sortByHeight(a) = [-1, 150, 160, 170, -1 ,-1, 180, 190]
+*/
+
+function sortByHeight(arr){
+    const sortedArrayWithoutTrees = arr.filter( height => height !== -1).sort();
+    const indices = [];
+    
+    arr.forEach((height, index) =>{
+        if(height === -1){
+            indices.push(index);
+        }
+    });
+
+    indices.forEach( index => {
+        sortedArrayWithoutTrees.splice(index, 0, -1);
+    });
+
+    return sortedArrayWithoutTrees;
+}
+
+sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]);
