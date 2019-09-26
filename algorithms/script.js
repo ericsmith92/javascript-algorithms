@@ -72,6 +72,7 @@
 **72. Reflect String
 **73. Sort by Height
 **74. Array Conversion
+**75. Sum of Two
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2546,3 +2547,57 @@ function arrayConversion(inputArray){
 }
 
 arrayConversion([1, 2, 3, 4, 5, 6, 7, 8]);
+
+//75. Sum of Two
+/*
+You have two integer arrays, a and b, and an integer target value v. Determine whether there is
+a pair of numbers, where one is taken from a and the other from b, that can be added together to 
+get a sum of v. Return true if such a pair exists, otherwise return false.
+
+Example
+For a = [1, 2, 3], and b = [10, 20, 30, 40], and v = 42, sumOfTwo(a,b,v) = true
+
+Since 2 (a[1]) and 40 (b[3]) = 42
+
+Hints
+hasOwnProperty()
+*/
+console.time("nestedLop");
+function sumOfTwo(a, b, v){
+    for(let i = 0; i < a.length; i++){
+        const currentInt = a[i];
+        
+        for(let j = 0; j < b.length; j++){
+            if (currentInt + b[j] === v){
+                return true;
+            } 
+        }
+    }
+
+    return false;
+}
+console.timeEnd("nestedLop");
+
+sumOfTwo([1, 2, 3], [10, 20, 30, 40], 42);
+
+//try the above using objects instead of nested loops
+console.time("objectMap");
+function sumOfTwo(a, b, v){
+    const hashMap = {};
+
+    for(let i = 0; i < a.length; i++){
+        const difference = v - a[i];
+        hashMap[difference] = difference;
+    }
+
+    for(let i = 0; i < b.length; i++){
+        if(hashMap.hasOwnProperty(b[i])){
+            return true;
+        }
+    }
+
+    return false;
+}
+console.timeEnd("objectMap");
+
+sumOfTwo([1, 2, 3], [10, 20, 30, 40], 42);
