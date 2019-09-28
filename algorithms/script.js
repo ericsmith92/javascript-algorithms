@@ -73,6 +73,7 @@
 **73. Sort by Height
 **74. Array Conversion
 **75. Sum of Two
+**76. Task Type
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2601,3 +2602,71 @@ function sumOfTwo(a, b, v){
 console.timeEnd("objectMap");
 
 sumOfTwo([1, 2, 3], [10, 20, 30, 40], 42);
+
+//76. Task Type
+/*
+You have some tasks in your Asana account. For each ith of them you knows its deadlinesi, which is the 
+last day by which it should be completed. As you can see in your calendar, today's date is day. Asana
+labels each task in accordance with its due date.
+
+-If the task is due today or it's already overdue, it is labeled as Today;
+-If the task is due within a week but not today - that is, its deadline is somewhere between day + 1 and
+day + 7 both inclusive - it is labeled as Upcoming;
+-All other tasks are labeled as later;
+
+Given an array of deadlines and today's date day, your goal is to find the number of tasks with each 
+label type and return it as an array with the format [Today, Upcoming, Later] where Today, Upcoming, and
+Later are the number of tasks that correspond to that label.
+
+Ex.
+
+For deadlines [1, 2, 3, 4, 5] and day = 2, output should be tasksTypes(deadlines, day) = [2, 3, 0]
+
+
+*/
+
+function tasksTypes(deadlines, day){
+    let today = 0;
+    let upcoming = 0;
+    let later = 0;
+    const tasks = [];
+
+    deadlines.forEach( deadline => {
+        if(deadline <= day){
+            today++;
+        }else if(deadline > day && deadline < day + 8){
+            upcoming++;
+        }else{
+            later++;
+        }
+    });
+
+    tasks.push(today);
+    tasks.push(upcoming);
+    tasks.push(later);
+
+    return tasks;
+}
+
+tasksTypes([1, 2, 3, 4, 5] , 2);
+
+//lets try with some destructuring to clean up our code
+
+function tasksTypes(deadlines, day){
+    let [today, upcoming, later] = [0 ,0 , 0];
+
+    deadlines.forEach( deadline => {
+        if(deadline <= day){
+            today++;
+        }else if(deadline > day && deadline < day + 8){
+            upcoming++;
+        }else{
+            later++;
+        }
+    });
+
+    return [today, upcoming, later];
+}
+
+tasksTypes([1, 2, 3, 4, 5] , 2);
+
