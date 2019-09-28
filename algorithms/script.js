@@ -74,6 +74,7 @@
 **74. Array Conversion
 **75. Sum of Two
 **76. Task Type
+**77. Bishop and Pawn
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2653,7 +2654,7 @@ tasksTypes([1, 2, 3, 4, 5] , 2);
 //lets try with some destructuring to clean up our code
 
 function tasksTypes(deadlines, day){
-    let [today, upcoming, later] = [0 ,0 , 0];
+    let [today, upcoming, later] = [0 ,0 ,0];
 
     deadlines.forEach( deadline => {
         if(deadline <= day){
@@ -2670,3 +2671,41 @@ function tasksTypes(deadlines, day){
 
 tasksTypes([1, 2, 3, 4, 5] , 2);
 
+//77. Bishop and Pawn
+/*
+Given the positions of a white bishop and a black pawn on the standard chess board, determine whether
+the bishop can capture the pawn in one move.
+
+The bishop has no restrictions in distance for each move, but is limited to diagonal movement. 
+
+Ex.
+For bishop = 'a1' and pawn 'c3', the output should be bishopAndPawn(bishop, pawn) = true
+*/
+
+function bishopAndPawn(bishop, pawn){
+    const boardColumnMap = {
+        'a' : 1,
+        'b' : 2,
+        'c' : 3,
+        'd' : 4,
+        'e' : 5,
+        'f' : 6,
+        'g' : 7,
+        'h' : 8,
+    };
+    const bishopArr = bishop.split('');
+    const pawnArr = pawn.split('');
+
+    if( bishopArr[0] !== pawnArr[0] && bishopArr[1] !== pawnArr[1] ){
+        const colDiff = Math.abs( boardColumnMap[bishopArr[0]] - boardColumnMap[pawnArr[0]]);
+        const rowDiff = Math.abs( parseInt(bishopArr[1]) - parseInt(pawnArr[1]) );
+
+        if(colDiff === rowDiff){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bishopAndPawn('a1', 'c3');
