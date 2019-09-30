@@ -76,6 +76,7 @@
 **76. Task Type
 **77. Bishop and Pawn
 **78. Common Character Count
+**79. Company Bot Strategy
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2810,3 +2811,44 @@ above, we found unique chars + count in one iteration, the rest of the logic was
 less the same but we also cut out unneccessary steps working directly with the object as 
 opposed to converting to array and accessing object properties
 */
+
+//79. Company Bot Strategy
+/*
+
+-For each problem answered by each trainer, there is an answer time value and a correctness value,
+where 1 is correct, -1 is incorrect, and 0 is no answer given
+
+-The bots answer time is calculated based on the average of correct answers given by the trainers
+
+Example:
+For trainingData = [[3, 1], [6, 1], [4, 1], [5, 1]], companyBotStrategy(trainingData) = 4.5
+
+//all trainers gave correct answers
+
+For trainingData = [[4, 1], [4, -1], [0, 0], [6, 1]], companyBotStrategy(trainingData) = 5.0
+
+//only the 1st and 4th trainers submitted correct solutions, so (4 + 6) / 2 = 5.0
+
+For trainingData = [[4, -1], [0, 0], [5, -1]] companyBotStrategy(trainingData) = 0
+
+//no correct answers were provided
+*/
+
+function companyBotStrategy(trainingData){
+    const correctAnswers = trainingData.filter( answer => answer[1] === 1);
+    let total = 0;
+
+    if(!correctAnswers.length){
+        return 0;
+    }
+
+    correctAnswers.forEach( answerTime => {
+        total += answerTime[0];
+    });
+
+    return total / correctAnswers.length;
+}
+
+companyBotStrategy([[3, 1], [6, 1], [4, 1], [5, 1]]);
+companyBotStrategy([[4, 1], [4, -1], [0, 0], [6, 1]]);
+companyBotStrategy([[4, -1], [0, 0], [5, -1]]);
