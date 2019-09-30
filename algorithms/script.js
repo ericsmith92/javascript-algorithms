@@ -75,6 +75,7 @@
 **75. Sum of Two
 **76. Task Type
 **77. Bishop and Pawn
+**78. Common Character Count
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2691,16 +2692,16 @@ function bishopAndPawn(bishop, pawn){
         'e' : 5,
         'f' : 6,
         'g' : 7,
-        'h' : 8,
+        'h' : 8
     };
     const bishopArr = bishop.split('');
     const pawnArr = pawn.split('');
 
     if( bishopArr[0] !== pawnArr[0] && bishopArr[1] !== pawnArr[1] ){
-        const colDiff = Math.abs( boardColumnMap[bishopArr[0]] - boardColumnMap[pawnArr[0]]);
+        const colDiff = Math.abs( boardColumnMap[bishopArr[0]] - boardColumnMap[pawnArr[0]] );
         const rowDiff = Math.abs( parseInt(bishopArr[1]) - parseInt(pawnArr[1]) );
 
-        if(colDiff === rowDiff){
+        if( colDiff === rowDiff ){
             return true;
         }
     }
@@ -2708,4 +2709,50 @@ function bishopAndPawn(bishop, pawn){
     return false;
 }
 
-bishopAndPawn('a1', 'c3');
+bishopAndPawn('a1', 'c3');  
+
+//78. Common Character Count
+/*
+Given two strings, find the number of common characters between them.
+
+Example:
+for s1= 'aabcc' and s2 = 'adcaa', commonCharsCount(s1, s2) = 3
+-Strings have 3 common characters - 2 "a's" and 1 "c"
+
+Hints
+split()
+hasOwnProperty()
+*/
+
+function commonCharsCount(s1, s2){
+    let count = 0;
+    const str1Arr = s1.split('');
+    const str2Arr = s2.split('');
+
+    const uniqueChars1 = {};
+    const uniqueChars2 = {};
+
+    for( let i = 0; i < str1Arr.length; i++ ){
+        if( str1Arr[i] !== str1Arr[i + 1] ){
+            uniqueChars1[str1Arr[i]] = 0;
+        }
+    }
+
+    for( let i = 0; i < str2Arr.length; i++ ){
+        if( str2Arr[i] !== str2Arr[i + 1] ){
+            uniqueChars[str2Arr[i]] = 0;
+        }
+    }
+
+    str2Arr.forEach( char => {
+        if( uniqueChars.hasOwnProperty(char) ){
+            console.log('we reached here');
+            uniqueChars[char]++;
+         }
+    });
+
+    //return count;
+    console.log(uniqueChars);
+}
+
+commonCharsCount('aabcc', 'adcaa');
