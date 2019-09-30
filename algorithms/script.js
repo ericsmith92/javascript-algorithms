@@ -2852,3 +2852,20 @@ function companyBotStrategy(trainingData){
 companyBotStrategy([[3, 1], [6, 1], [4, 1], [5, 1]]);
 companyBotStrategy([[4, 1], [4, -1], [0, 0], [6, 1]]);
 companyBotStrategy([[4, -1], [0, 0], [5, -1]]);
+
+//let's try doing all our work inside the foreach, so we only iterate through the array once
+
+function companyBotStrategy(trainingData){
+    let totalAnswerTime = 0;
+    let correctAnswers = 0;
+
+    trainingData.forEach( answer => {
+        console.log(answer[0]);
+    });
+
+    //return total / correctAnswers.length;
+}
+
+companyBotStrategy([[3, 1], [6, 1], [4, 1], [5, 1]]);
+companyBotStrategy([[4, 1], [4, -1], [0, 0], [6, 1]]);
+companyBotStrategy([[4, -1], [0, 0], [5, -1]]);
