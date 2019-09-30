@@ -2724,35 +2724,89 @@ split()
 hasOwnProperty()
 */
 
+function findUniqueChars(array, object){
+    for( let i = 0; i < array.length; i++ ){
+        if( array[i] !== array[i + 1] ){
+            object[array[i]] = 0;
+        }
+    }
+
+    return object;
+}
+
+function countUniqueChars(charArray, uniqueCharsObject){
+    charArray.forEach( char => {
+        if( uniqueCharsObject.hasOwnProperty(char) ){
+            uniqueCharsObject[char]++;
+        }
+    });
+
+    return uniqueCharsObject;
+}
+
 function commonCharsCount(s1, s2){
     let count = 0;
     const str1Arr = s1.split('');
     const str2Arr = s2.split('');
 
-    const uniqueChars1 = {};
-    const uniqueChars2 = {};
+    let uniqueChars1 = findUniqueChars(str1Arr, {});
+    let uniqueChars2 = findUniqueChars(str2Arr, {});
 
-    for( let i = 0; i < str1Arr.length; i++ ){
-        if( str1Arr[i] !== str1Arr[i + 1] ){
-            uniqueChars1[str1Arr[i]] = 0;
+    uniqueChars1 = countUniqueChars(str1Arr, uniqueChars1);
+    uniqueChars2 = countUniqueChars(str2Arr, uniqueChars2);
+
+   const uniqueCharKeys1 = Object.keys(uniqueChars1);
+   const uniqueCharKeys2 = Object.keys(uniqueChars2);
+
+   uniqueCharKeys1.forEach( key => {
+        if( uniqueCharKeys2.includes(key) ){
+            count += uniqueChars1[key] < uniqueChars2[key] ? uniqueChars1[key] : uniqueChars2[key];
         }
-    }
+   });
 
-    for( let i = 0; i < str2Arr.length; i++ ){
-        if( str2Arr[i] !== str2Arr[i + 1] ){
-            uniqueChars[str2Arr[i]] = 0;
-        }
-    }
+   return count;
 
-    str2Arr.forEach( char => {
-        if( uniqueChars.hasOwnProperty(char) ){
-            console.log('we reached here');
-            uniqueChars[char]++;
-         }
-    });
-
-    //return count;
-    console.log(uniqueChars);
 }
 
 commonCharsCount('aabcc', 'adcaa');
+
+//the above works, but seems very complicated and not optimized, nonetheless, it's the solution
+//I came up with on my own before watching the video
+
+function getCharList(charArray){
+    const wordCount = {};
+
+    charArray.forEach( char => {
+        if( wordCount.hasOwnProperty(char) ){
+            wordCount[char]++;
+        } else {
+            wordCount[char] = 1;
+        }
+    });
+
+    return wordCount;
+}
+
+function commonCharsCount(s1, s2){
+    const strArr1 = s1.split('');
+    const strArr2 = s2.split('');
+    const s1CharCount = getCharList(strArr1);
+    const s2CharCount = getCharList(strArr2);
+    let total = 0;
+
+    for( const char in s1CharCount){
+        if(s2CharCount.hasOwnProperty(char)){
+            total+= s1CharCount[char] < s2CharCount[char] ? s1CharCount[char] : s2CharCount[char];
+        }
+    }
+
+    return total;
+}
+
+commonCharsCount('aabcc', 'adcaa');
+
+/*
+above, we found unique chars + count in one iteration, the rest of the logic was more or 
+less the same but we also cut out unneccessary steps working directly with the object as 
+opposed to converting to array and accessing object properties
+*/
