@@ -78,6 +78,7 @@
 **78. Common Character Count
 **79. Company Bot Strategy
 **80. Make Array Consecutive 2
+**81. Longest Digits Prefix
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2924,3 +2925,27 @@ function makeArrayConsecutive2(values){
 
 makeArrayConsecutive2([6, 2, 3, 8]);
 
+
+//81. Longest Digits Prefix
+/*
+Given a string, output its longest prefix which containts only digits
+
+Example
+For inputString = '123aa1', longestDigitsPrefix(inputString)= "123"
+*/
+
+function longestDigitsPrefix(inputString){
+    const inputStringArray = inputString.split('');
+    let index = 0;
+
+    for(let i = 0; i < inputStringArray.length; i++){
+        if( isNaN( inputStringArray[i] ) ){
+            index = i;
+            break;
+        }
+    }
+
+    return inputString.substring(0, index);
+}
+
+longestDigitsPrefix('123aa1');
