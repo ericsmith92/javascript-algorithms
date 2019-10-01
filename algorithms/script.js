@@ -77,6 +77,7 @@
 **77. Bishop and Pawn
 **78. Common Character Count
 **79. Company Bot Strategy
+**80. Make Array Consecutive 2
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2860,12 +2861,66 @@ function companyBotStrategy(trainingData){
     let correctAnswers = 0;
 
     trainingData.forEach( answer => {
-        console.log(answer[0]);
+        if(answer[1] === 1){
+            totalAnswerTime += answer[0]
+            correctAnswers++;
+        }
     });
 
-    //return total / correctAnswers.length;
+    return totalAnswerTime / correctAnswers || 0;
 }
 
 companyBotStrategy([[3, 1], [6, 1], [4, 1], [5, 1]]);
 companyBotStrategy([[4, 1], [4, -1], [0, 0], [6, 1]]);
 companyBotStrategy([[4, -1], [0, 0], [5, -1]]);
+
+//80. Make Array Consecutive 2
+/*
+How many missing values do we need to add to make an array consecutive?
+
+Ex.
+for value = [6, 2, 3, 8], makeArrayConsecutive2(values) = 3
+
+missin integers 4, 5, and 7
+
+Hints
+sort()
+indexOf()
+*/
+
+function makeArrayConsecutive2(values){
+    values.sort( (a, b) => a - b );
+    let count = 0;
+
+    for( let i = 0; i < values.length - 1; i++ ){
+        let current = values[i];
+        let next = values[i + 1];
+        if( next !== current + 1 ){
+           count += next - current - 1;
+        }
+    }
+
+    return count;
+}
+
+makeArrayConsecutive2([6, 2, 3, 8]);
+
+//cleaner solution does away wtih some of the messy logic above
+
+function makeArrayConsecutive2(values){
+    values.sort( (a, b) => a - b );
+    let count = 0;
+    const min = values[0];
+    const max = values[values.length - 1];
+
+    for( let i = min; i < max; i++ ){
+        if(!values.includes(i)){
+            count++;
+        }
+    }
+
+    return count;
+}
+
+makeArrayConsecutive2([6, 2, 3, 8]);
+
