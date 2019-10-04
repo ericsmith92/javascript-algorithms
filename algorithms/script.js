@@ -79,6 +79,7 @@
 **79. Company Bot Strategy
 **80. Make Array Consecutive 2
 **81. Longest Digits Prefix
+**82. Box Blur
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2949,3 +2950,50 @@ function longestDigitsPrefix(inputString){
 }
 
 longestDigitsPrefix('123aa1');
+
+//82. Box Blur
+/*
+Each pixel x in the resulting image has a value equal to the average of the input image
+pixels' values from the 3 x 3 square with the center at x. All pixels at the edges are
+cropped.
+
+As pixel's value is an integer, all fractions should be rouded down
+
+Example
+For image[[1, 1, 1],
+          [1, 7, 1],
+          [1, 1, 1]];
+
+the output should be boxBlur(images) = [[1]];
+
+Obtained as (1 + 1 + 1 + 1 + 7 + 1 + 1 + 1 + 1) / 9 = 15 / 9 = ~ rouded down ~ = 1
+
+Hints
+push()
+Math.floor()
+*/
+
+function flattenArray(array, flattenedArray){
+    array.forEach( element => {
+        flattenedArray.push(element);
+    });
+
+    return flattenedArray;
+}
+
+function boxBlur(image){
+    const flattenedImage = [];
+    image.forEach( row => {
+        if(Array.isArray(row)){
+            flattenArray(row, flattenedImage);
+        }
+    });
+
+    const total =  flattenedImage.reduce( (num1, num2) => num1 + num2 );
+
+    return Math.floor(total / flattenedImage.length);
+}
+
+boxBlur([[1, 1, 1], [1, 7, 1], [1, 1, 1]]);
+
+
