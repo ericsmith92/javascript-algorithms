@@ -81,6 +81,7 @@
 **81. Longest Digits Prefix
 **82. Box Blur
 **83. Crossing Sum
+**84. Launch Sequence Checker
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3033,3 +3034,58 @@ function crossingSum(matrix, a, b){
 }
 
 crossingSum([[1, 1, 1, 1],[2, 2, 2, 2],[3, 3, 3, 3]], 1, 3);
+
+//84. Launch Sequence Checker
+/*
+The master launch sequence consists of several independent sequences for different systems.
+Your goal is to verify that all the individual system sequences are in strictly increasing
+order. In other words, for any two elements i and j (i < j) of the master launch 
+sequence that belong to the same system (having systemNames[i] = systemNames[j]), their
+values should be in strictly increasing order.
+
+Example
+For systemNames = ["stage_1", "stage_2", "dragon", "stage_1", "stage_2", "dragon"];
+and stepNumbers = [1, 10, 11, 2, 12, 111];
+
+launchSequenceChecker(systemNames, stepNumbers) = true;
+
+There are three indepedent sequences for systems "stage_1", "stage_2", and "dragon"
+These sequences are [1, 2] [10, 12] and [11, 111] respectively. The elements are in
+strictly increasing order for all three.
+
+For systemNames = ["stage_1", "stage_1", "stage_2", "dragon"];
+and stepNumbers = [2, 1, 12, 111];
+
+launchSequenceChecker(systemNames, stepNumbers) = false;
+
+There are three indepedent sequences for systems "stage_1", "stage_2", and "dragon"
+These sequences are [2, 1] [12] and [111] respectively. In the first sequence, they are
+not in strictly increasing order.
+
+Hints
+hasOwnProperty()
+*/
+
+function launchSequenceChecker(systemNames, stepNumbers){
+    const sysNamesObj = {};
+
+    systemNames.forEach( (sysName, index) => {
+        if( !sysNamesObj.hasOwnProperty(sysName) ){
+            sysNamesObj[sysName] = [index];
+        }else{
+            sysNamesObj[sysName].push(index);
+        }
+    });
+
+    for (let [key, value] of Object.entries(sysNamesObj)) {
+        for(let i = 0; i < value.length; i++){
+            if( stepNumbers[i] > stepNumbers[i + 1] ){
+                return false;
+            }
+         }
+      }
+
+      return true;
+}
+
+launchSequenceChecker(["stage_1", "stage_2", "dragon", "stage_1", "stage_2", "dragon"], [1, 10, 11, 2, 12, 111]);
