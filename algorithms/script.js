@@ -80,6 +80,7 @@
 **80. Make Array Consecutive 2
 **81. Longest Digits Prefix
 **82. Box Blur
+**83. Crossing Sum
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -2996,4 +2997,39 @@ function boxBlur(image){
 
 boxBlur([[1, 1, 1], [1, 7, 1], [1, 1, 1]]);
 
+//83. Crossing Sum
+/*
+Given a rectangular matrix and integers a and b, consider the union of the ath row
+and the bth column (both 0-based) column of the matrix. (i.e. all cells that belong
+either to the ath row or to the bth column, or to both.) Return the sum of all elements
+of that union
 
+Example
+
+for matrix = [[1, 1, 1, 1],[2, 2, 2, 2],[3, 3, 3, 3]];
+a = 1
+b = 3
+
+crossingSum(matrix, a, b) = 12
+
+Resulting from (2 + 2 + 2 + 2) + (1 + 3) = 12
+
+Hints 
+
+reduce()
+*/
+
+function crossingSum(matrix, a, b){
+    const rowTotal = matrix[a].reduce( (num1, num2) => num1 + num2 ); 
+    let colTotal = 0;
+
+    matrix.forEach( (array, index) => {
+        if(index !== a){
+            colTotal += array[b];
+        }
+    });
+
+    return rowTotal + colTotal;
+}
+
+crossingSum([[1, 1, 1, 1],[2, 2, 2, 2],[3, 3, 3, 3]], 1, 3);
