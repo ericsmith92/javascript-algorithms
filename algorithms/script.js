@@ -83,6 +83,7 @@
 **83. Crossing Sum
 **84. Launch Sequence Checker
 **85. Matrix Elements Sum
+**86. Unique Digits Product
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3213,6 +3214,46 @@ function matrixElementsSum(matrix){
 }
 
 matrixElementsSum([[0, 1, 1, 2], [0, 5, 0, 0], [2, 0, 3, 3]]);
+
+//86. Unique Digits Product
+/*
+Let's call product(x) the product of x's digits. Given an array of integers 'a', calculate product(x)
+for each x in a, and return the number of distinct results you get.
+
+Example
+
+For a = [2, 8, 121, 42, 222, 23], uniqueDigitsProducts(a) = 3
+
+Hints
+includes()
+push()
+toString()
+split()
+parseInt()
+*/
+
+function uniqueDigitsProducts(a){
+    const uniqueProducts = {};
+    
+    a.forEach( number => {
+        const numberArray = number.toString().split('');
+
+        if( numberArray.length === 1 ){
+            if( !uniqueProducts.hasOwnProperty(numberArray[0]) ){
+                uniqueProducts[numberArray[0]];
+            }
+        }else{
+            const arrayProduct = numberArray.reduce( ( num1, num2 ) => parseInt(num1) * parseInt(num2) )
+            if( !uniqueProducts.hasOwnProperty(arrayProduct) ){
+                uniqueProducts[arrayProduct] = arrayProduct;
+            }
+        }
+    });
+
+    return Object.keys(uniqueProducts).length;
+}
+
+uniqueDigitsProducts([2, 8, 121, 42, 222, 23]);
 
 
 
