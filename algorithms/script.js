@@ -82,6 +82,7 @@
 **82. Box Blur
 **83. Crossing Sum
 **84. Launch Sequence Checker
+**85. Matrix Elements Sum
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3089,3 +3090,131 @@ function launchSequenceChecker(systemNames, stepNumbers){
 }
 
 launchSequenceChecker(["stage_1", "stage_2", "dragon", "stage_1", "stage_2", "dragon"], [1, 10, 11, 2, 12, 111]);
+
+//we can actually do this comparison on the fly, making our solution faster
+
+function launchSequenceChecker(systemNames, stepNumbers){
+    const launchCodes = {};
+
+    for( let i = 0; i < systemNames.length; i++ ){
+        if( launchCodes.hasOwnProperty(systemNames[i])){
+            if(launchCodes[systemNames[i]] >= stepNumbers[i]){
+                return false;
+            }
+            launchCodes[systemNames[i]] = stepNumbers[i];
+        } else {
+            launchCodes[systemNames[i]] = stepNumbers[i];
+        }
+    }
+
+
+    return true;
+}
+
+launchSequenceChecker(["stage_1", "stage_2", "dragon", "stage_1", "stage_2", "dragon"], [1, 10, 11, 2, 12, 111]);
+
+//85. Matrix Elements Sum
+/*
+After becoming famous, a group of individuals decide to move into a building together. The building is 
+represented by a rectangular matrix of rooms, each cell containing an integer - the price of the room.
+Some rooms are free (they cost 0), but that's because they're haunted, so nobody from the group wants to 
+live there. Any room that is free or is located below a free room in the same column is no considered
+suitable to move into.
+
+Help calculate the total price of all the rooms that are suitable for them.
+
+Example
+
+For:
+
+matrix = 
+[[0, 1, 1, 2],
+ [0, 5, 0, 0],
+ [2, 0, 3, 3]];
+
+ matrixElementsSum(matrix) = 9
+
+ because:
+
+[[x, 1, 1, 2],
+ [x, 5, x, x],
+ [x, x, x, x]];
+
+ Thus, we're left with 1 + 5 + 1 + 2 = 9
+
+ Hints
+ push()
+ indexOf()
+*/
+
+function matrixElementsSum(matrix){
+    const hauntedColumns = [];
+    const suitableRooms = [];
+    
+    for(let i = 0; i < matrix.length; i++){
+        const currentFloor = matrix[i];
+
+        for(let j = 0; j < currentFloor.length; j++){
+            if(currentFloor[j] > 0 && !hauntedColumns.includes(j)){
+                suitableRooms.push(currentFloor[j]);
+            }else{
+                hauntedColumns.push(j);
+            }
+        }
+    }
+
+    return suitableRooms.reduce( ( a, b ) => a + b);
+}
+
+matrixElementsSum([[0, 1, 1, 2], [0, 5, 0, 0], [2, 0, 3, 3]]);
+
+//has object instead
+
+function matrixElementsSum(matrix){
+    const hauntedColumns = {};
+    const suitableRooms = [];
+    
+    for(let i = 0; i < matrix.length; i++){
+        const currentFloor = matrix[i];
+
+        for(let j = 0; j < currentFloor.length; j++){
+            if(currentFloor[j] > 0 && !hauntedColumns.hasOwnProperty(j)){
+                suitableRooms.push(currentFloor[j]);
+            }else{
+                hauntedColumns[j] = j;
+            }
+        }
+    }
+
+    return suitableRooms.reduce( ( a, b ) => a + b);
+}
+
+matrixElementsSum([[0, 1, 1, 2], [0, 5, 0, 0], [2, 0, 3, 3]]);
+
+//lastly, we can update a let variable on the fly instead of reducing at the end
+
+function matrixElementsSum(matrix){
+    const hauntedColumns = {};
+    let suitableRoomsPrice = 0;
+    
+    for(let i = 0; i < matrix.length; i++){
+        const currentFloor = matrix[i];
+
+        for(let j = 0; j < currentFloor.length; j++){
+            if(currentFloor[j] > 0 && !hauntedColumns.hasOwnProperty(j)){
+                suitableRoomsPrice += currentFloor[j];
+            }else{
+                hauntedColumns[j] = j;
+            }
+        }
+    }
+
+    return suitableRoomsPrice;
+}
+
+matrixElementsSum([[0, 1, 1, 2], [0, 5, 0, 0], [2, 0, 3, 3]]);
+
+
+
+
+
