@@ -84,6 +84,7 @@
 **84. Launch Sequence Checker
 **85. Matrix Elements Sum
 **86. Unique Digits Product
+**87. Valid Time 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3255,7 +3256,29 @@ function uniqueDigitsProducts(a){
 
 uniqueDigitsProducts([2, 8, 121, 42, 222, 23]);
 
+//87. Valid Time 
+/*
+Check if a given string is a correct time representation of the 24-hour clock
 
+Example
+For time = "13:58", validTime(time) = true;
+For time = "25:51", validTime(time) = false;
+For time = "25:76", validTime(time) = false;
+*/
 
+function validTime(time){
+    const timeArr = time.split(':');
+    const hours = parseInt(timeArr[0]);
+    const minutes = parseInt(timeArr[1]);
 
+    if( hours > 23 ||  hours < 0 ){
+        return false;
+    }else if( minutes > 59 || minutes < 0 ){
+        return false;
+    }else{
+        return true;
+    }
+}
 
+validTime("13:58");
+validTime("02:76");
