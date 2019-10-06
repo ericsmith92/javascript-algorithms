@@ -85,6 +85,7 @@
 **85. Matrix Elements Sum
 **86. Unique Digits Product
 **87. Valid Time 
+**88. Pro Categorization
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3282,3 +3283,46 @@ function validTime(time){
 
 validTime("13:58");
 validTime("02:76");
+
+//88. Pro Categorization
+/*
+Thumbtack helps Professionals (pros) grow their business by identifying new customers. Upon registering
+on Thumbtack, a Pro specifies which categories of service they provide. To help math customer requests
+with qualified Pros, Thumbtack maintains a list of pros grouped by service categories.
+
+Given a list of pros and their category preferences, return the list of Pros for each category.
+
+Example
+For pros = ["Jack", "Leon", "Maria"] and
+preferences = [["Computer repair", "Handyman", "House cleaning"], ["Computer lessons", "Computer repair", "Data recovery services"], ["Computer lessons", "House cleaning"]]
+
+proCategorization(pros, preferences) = [[["Computer Lessons"], ["Leon", "Maria"]], ["Computer repair"], ["Jack", "Leon"], [["Data Recovery Service"], ["Leon"]], [["Handyman"], ["Jack"]], [["House Cleaning"], ["Jack", "Maria"]]];
+*/
+
+function proCategorization(pros, preferences){
+    const categoriesObject = {};
+
+    for(let i = 0; i < preferences.length; i++){
+        const currentPreferenceList = preferences[i];
+
+        for(let j = 0; j < currentPreferenceList.length; j++){
+            if( !categoriesObject.hasOwnProperty(currentPreferenceList[j]) ){
+                categoriesObject[currentPreferenceList[j]] = [pros[i]];
+            } else {
+                categoriesObject[currentPreferenceList[j]].push(pros[i]);
+            }
+        }
+    }
+
+    const categoriesObjectKeys = Object.keys(categoriesObject).sort();
+   
+    const proCategorization = [];
+
+    categoriesObjectKeys.forEach( key => {
+        returnArray.push([[key], [categoriesObject[key]]]);
+    });
+
+    return proCategorization
+}
+
+proCategorization(["Jack", "Leon", "Maria"], [["Computer repair", "Handyman", "House cleaning"], ["Computer lessons", "Computer repair", "Data recovery services"], ["Computer lessons", "House cleaning"]]);
