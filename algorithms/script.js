@@ -3314,15 +3314,22 @@ function proCategorization(pros, preferences){
         }
     }
 
-    const categoriesObjectKeys = Object.keys(categoriesObject).sort();
-   
+    const categoriesObjectKeys = Object.keys(categoriesObject).sort( ( a, b ) => {
+        if( a.toLowerCase() < b.toLowerCase() ){
+            return - 1;
+        }
+        if(a.toLowerCase() > b.toLowerCase()){
+            return 1;
+        }
+    });
+
     const proCategorization = [];
 
     categoriesObjectKeys.forEach( key => {
-        returnArray.push([[key], [categoriesObject[key]]]);
+        proCategorization.push([[key], [categoriesObject[key]]]);
     });
 
-    return proCategorization
+    return proCategorization;
 }
 
 proCategorization(["Jack", "Leon", "Maria"], [["Computer repair", "Handyman", "House cleaning"], ["Computer lessons", "Computer repair", "Data recovery services"], ["Computer lessons", "House cleaning"]]);
