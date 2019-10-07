@@ -86,6 +86,7 @@
 **86. Unique Digits Product
 **87. Valid Time 
 **88. Pro Categorization
+**89. New Numeral System
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3333,3 +3334,43 @@ function proCategorization(pros, preferences){
 }
 
 proCategorization(["Jack", "Leon", "Maria"], [["Computer repair", "Handyman", "House cleaning"], ["Computer lessons", "Computer repair", "Data recovery services"], ["Computer lessons", "House cleaning"]]);
+
+//89. New Numeral System
+/*
+Your informatics teacher at school likes coming up with new ways to help you understand
+the material. When you started studying numeral systems, he introduced his own numeral
+system, which he's convinved will help calrify things. His numeral system has base 26,
+and its digits are represented by English capital letters - A for 0, B for 1, and so on.
+
+The teacher assigned you the following exercise: given a one-digit number, you should
+find all unordered pairs of one-digit numbers whose values add up to the number
+
+Example
+
+For number = 'G', newNumeralSystem(number) = ['A + G', 'B + F', 'C + E', 'D + D'];
+
+Translating into the decimal numeral system, we get:
+
+number = 6, so it is ['0 + 6', '1 + 5', '2 + 4', '3 + 3'];
+*/
+
+function newNumeralSystem(number){
+    //we only need up to 'J' in dictioary since this problem specifies a one digit number
+    const dictionary = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    const relevantNums = dictionary.splice(0, dictionary.indexOf(number) + 1);
+    const unorderedPairs = [];
+    let startingPoint = 0;
+    let furthestPoint = relevantNums.length - 1;
+
+    while(furthestPoint >= startingPoint){
+        unorderedPairs.push(`${relevantNums[startingPoint]} + ${relevantNums[furthestPoint]}`);
+
+        startingPoint++;
+        furthestPoint--;
+    }
+
+    return unorderedPairs;
+}
+
+newNumeralSystem('G');
+
