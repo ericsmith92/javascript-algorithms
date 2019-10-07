@@ -87,6 +87,7 @@
 **87. Valid Time 
 **88. Pro Categorization
 **89. New Numeral System
+**90. Shape Area
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3374,3 +3375,37 @@ function newNumeralSystem(number){
 
 newNumeralSystem('G');
 
+//do this without dictionary and use charCodeAt() && fromCharCode()
+
+function newNumeralSystem(number){
+    const unorderedPairs = [];
+    let startingPoint = 65;
+    let furthestPoint = number.charCodeAt(0);
+
+    while(furthestPoint >= startingPoint){
+        unorderedPairs.push(`${String.fromCharCode(startingPoint)} + ${String.fromCharCode(furthestPoint)}`);
+
+        startingPoint++;
+        furthestPoint--;
+    }
+
+    return unorderedPairs;
+}
+
+newNumeralSystem('G');
+
+//90. Shape Area
+/*
+Below we will define an n-interesting polygon. Your task is to find the area of a polygon
+for a given n.
+
+A 1-interesting polygon is just a square with a side of length 1. An n-interesting 
+polygon is obtained by taking the n-1 interesting polygon and appending 1-interesting
+polygons to its rim, side by side. 
+*/
+
+function shapeArea(n){
+    return (n * n) + (n - 1) * (n - 1);
+}
+
+shapeArea(3);
