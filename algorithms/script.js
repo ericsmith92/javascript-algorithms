@@ -88,6 +88,7 @@
 **88. Pro Categorization
 **89. New Numeral System
 **90. Shape Area
+**91. Square Digits Sequence
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3409,3 +3410,63 @@ function shapeArea(n){
 }
 
 shapeArea(3);
+
+//91. Square Digits Sequence
+/*
+Consider a sequence of numbers a0, a1..., an, in which an element is equal to the sum of squared digits 
+of the previous element. The sequence ends once an element that  has already been in the sequence appears 
+again.
+
+Given the first a0, find the length of the sequence.
+
+Example
+
+For a0 = 16, squareDigitsSequence(a0) = 9
+
+Here's how the elements of the sequence are constructed:
+-a0 = 16
+-a1 = 1^2 + 6^2 = 37
+-a2 = 3^2 + 7^2 = 58
+-a3 = 5^2 + 8^2 = 89
+-a4 = 8^2 + 9^2 = 145
+-a5 = 1^2 + 4^2 + 5^2= 42
+-a6 = 4^2 + 2^2 = 20
+-a7 = 2^2 + 0^2 = 4
+-a8 = 4^2 = 16 (which occured at a0)
+
+Thus, there are 9 elements in the sequence
+
+Hints
+includes()
+push()
+toString()
+split()
+map()
+parseInt()
+reduce()
+*/
+
+function sumSquaredDigits(digit){
+    const digitsArray = digit.toString().split('').map( digit => parseInt(digit));
+    const squaredDigits = [];
+
+    digitsArray.forEach( digit => {
+        squaredDigits.push(Math.pow(digit, 2));
+    });
+
+    return squaredDigits.reduce((num1, num2) => num1 + num2);
+}
+
+function squareDigitsSequence(a0){
+    let result = sumSquaredDigits(a0);
+    let count = 1;
+
+    while(result !== a0){
+        result = sumSquaredDigits(result);
+        count++;
+    }
+
+    return count;
+}
+
+squareDigitsSequence(16);
