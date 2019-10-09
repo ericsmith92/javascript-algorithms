@@ -88,7 +88,7 @@
 **88. Pro Categorization
 **89. New Numeral System
 **90. Shape Area
-**91. Square Digits Sequence
+**91. Square Digits Sequence (return to this problem)
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3447,26 +3447,29 @@ reduce()
 */
 
 function sumSquaredDigits(digit){
-    const digitsArray = digit.toString().split('').map( digit => parseInt(digit));
-    const squaredDigits = [];
+    const digitsArray = digit.toString().split('').map( digit => Math.pow(parseInt(digit), 2));
+    const squaredDigitsSum = digitsArray.reduce((num1, num2) => num1 + num2);
 
-    digitsArray.forEach( digit => {
-        squaredDigits.push(Math.pow(digit, 2));
-    });
-
-    return squaredDigits.reduce((num1, num2) => num1 + num2);
+    return squaredDigitsSum;
 }
 
 function squareDigitsSequence(a0){
-    let result = sumSquaredDigits(a0);
+    const uniqueNums = [a0];
     let count = 1;
 
-    while(result !== a0){
-        result = sumSquaredDigits(result);
+    while( true ){
         count++;
-    }
+        a0 = sumSquaredDigits(a0);
 
-    return count;
+        if( uniqueNums.includes(a0) ){
+            return count;
+        }
+
+        uniqueNums.push(a0);
+    }
 }
 
 squareDigitsSequence(16);
+
+//revisit this, see if we can't do this without skechy while loop logic
+
