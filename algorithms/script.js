@@ -89,6 +89,7 @@
 **89. New Numeral System
 **90. Shape Area
 **91. Square Digits Sequence (return to this problem)
+**92. Switch Lights
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3473,3 +3474,36 @@ squareDigitsSequence(16);
 
 //revisit this, see if we can't do this without skechy while loop logic
 
+//92. Switch Lights
+/*
+N candles are placed in a row, some of them initially lit. For each candle from the 1st
+to the Nth the following algorithm is applied: if the observed candle is lit then states 
+of this candle and all candles before it are changed to the opposite. Which candles will
+remain lit after applying the algorithm to all candles in the order they are placed in
+the line?
+
+Example:
+For a = [1, 1, 1, 1, 1], switchLights(a) = [0, 1, 0, 1, 0];
+For a = [0, 0], switchLights(a) = [0, 0];
+
+*/
+
+function switchLights(a){
+    for(let i = 0; i < a.length; i++){
+        if( a[i] === 1 ){
+            a[i] = 0;
+
+            for(let j = i - 1; j >= 0; j--){
+                if(a[j] === 1){
+                    a[j] = 0;
+                }else{
+                    a[j] = 1;
+                }
+            }
+        }
+    }
+   return a;
+}
+
+switchLights([1, 1, 1, 1, 1]);
+switchLights([0, 0]);
