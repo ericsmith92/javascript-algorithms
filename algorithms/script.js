@@ -90,6 +90,7 @@
 **90. Shape Area
 **91. Square Digits Sequence (return to this problem)
 **92. Switch Lights
+**93. Pig Latin
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3507,3 +3508,39 @@ function switchLights(a){
 
 switchLights([1, 1, 1, 1, 1]);
 switchLights([0, 0]);
+
+//93. Pig Latin
+/*
+Translate the provided string to pig latin.
+
+Pig Latin takes the first consonant (or consonant cluster) of an English word, moves it to the end of the
+word and suffixes an 'ay'.
+
+If a word begins with a vowel you just add 'way' to the end.
+
+Input strings are guranteed to be English words in all lowercase
+
+Example:
+pigLatin('glove') = 'oveglay'
+pigLatin('eight') = 'eightway'
+*/
+
+function pigLatin(word){
+    const vowelRegex = /[aeiou]/i;
+    const chars = word.split('');
+
+    if( vowelRegex.test(chars[0]) ){
+        return word.concat('way');
+    }else{
+        for(let i = 0; i < chars.length; i++ ){
+            if( vowelRegex.test(chars[i]) ){
+                const startingChars = word.substring(i, word.length);
+                const endingChars = word.substring(0, i);
+                return `${startingChars}${endingChars}ay`;
+            }
+        }
+    }
+}
+
+pigLatin('glove');
+pigLatin('eight');
