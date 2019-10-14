@@ -92,6 +92,7 @@
 **92. Switch Lights
 **93. Pig Latin
 **94. Late Night Ride
+**95. Palindrom Rearranging
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3598,3 +3599,37 @@ function lateRide(n){
 
 lateRide(240);
 lateRide(808);
+
+//95. Palindrom Rearranging
+/*
+Given a string, find out if its characters can be rearranged to form a palindrome.
+
+Example:
+for inputString = 'aabb', palindromeRearranging(inputString) = true
+
+We can rearrange 'aabb' to make 'abba', which is a palindrome 
+
+Hints
+split()
+hasOwnProperty()
+*/
+
+function palindromeRearranging(inputString){
+    const inputStrArray = inputString.split('');
+    const charCount = {};
+
+    for(let i = 0; i < inputStrArray.length; i++){
+        if(!charCount.hasOwnProperty(inputStrArray[i])){
+            charCount[inputStrArray[i]] = 1;
+        }else{
+            charCount[inputStrArray[i]] += 1;
+        }
+    }
+
+    const singleInstanceCount = Object.values(charCount).filter( char => char % 2 !== 0 );
+    
+    return singleInstanceCount.length > 1 ? false : true;
+}
+
+palindromeRearranging('aabb');
+palindromeRearranging('racecar');
