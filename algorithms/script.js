@@ -91,6 +91,7 @@
 **91. Square Digits Sequence (return to this problem)
 **92. Switch Lights
 **93. Pig Latin
+**94. Late Night Ride
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3544,3 +3545,56 @@ function pigLatin(word){
 
 pigLatin('glove');
 pigLatin('eight');
+
+//94. Late Night Ride
+/*
+One night you go for a ride on your motorcycle. At 00:00 you start your engine, and the built-in timer
+automatically begins counting the length of your ride, in minutes. Off you go to explore the neighborhood.
+
+When you finally decide to head back, you realize there's a chance the bridges on your route home are up,
+leaving you stranded! Unfortunately, you don't have your watch and you don't know what time it is. All 
+you know is thanks to the bikes timer is that n minutes have passed since 00:00
+
+Using the bike's timer, calculate the current time. Return an answer as the sum of digits that the digital
+timer is showing in the format hh:mm would show.
+
+Example
+for n = 240, output should be lateRide(n) = 4;
+
+Since 240 minutes have passed, the current time is 04:00. The digits sum up to 0 + 4 + 0 + 0 = 4
+
+For n = 808, lateRide(n) = 14
+
+808 minutes means that it's 13:28 now, so the answer should be 1 + 3 + 2 + 8 = 14
+
+Hints:
+
+toString()
+concat()
+split()
+parseInt()
+reduce()
+map()
+*/
+
+function lateRide(n){
+ const hours = Math.floor(n / 60);
+ const minutes = n % 60;
+
+ const hoursArray = hours.toString().split('');
+ const minutesArray = minutes.toString().split('');
+ const hoursMins = [];
+
+ hoursArray.forEach( num => {
+    hoursMins.push(parseInt(num));
+ });
+
+ minutesArray.forEach( num => {
+    hoursMins.push(parseInt(num));
+ });
+
+ return hoursMins.reduce( (num1, num2) => num1 + num2 );
+}
+
+lateRide(240);
+lateRide(808);
