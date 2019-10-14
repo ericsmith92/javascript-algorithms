@@ -93,6 +93,7 @@
 **93. Pig Latin
 **94. Late Night Ride
 **95. Palindrom Rearranging
+**96. Strings Construction
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3633,3 +3634,79 @@ function palindromeRearranging(inputString){
 
 palindromeRearranging('aabb');
 palindromeRearranging('racecar');
+
+//96. Strings Construction
+/*
+How many strings equal to a can be constructed using letters from string b? Each letter can only be used
+once an in one string only.
+
+Example:
+For a = 'abc' and b = 'abccba', stringsConstruction(a, b) = 2
+
+We can construct 2 strings of a with letters from b
+
+Hints
+hasOwnProperty()
+push()
+Math.floor()
+Math.min()
+split()
+
+*/
+
+function stringsConstruction(a, b){
+    const aArr = a.split('');
+    const bArr = b.split('');
+    const foundChars = [];
+    let flag = true;
+
+    while(flag){
+        aArr.forEach( char => {
+            if( bArr.includes(char) ){
+                foundChars.push(char);
+                bArr.splice(bArr.indexOf(char), 1);
+            }else{
+                flag = false;
+            }
+        });
+    }
+
+    return Math.floor(foundChars.length / aArr.length);
+}
+
+stringsConstruction('abc', 'abccba');
+
+//width object
+
+function stringsConstruction(a, b){
+   const aCount = getAlphabetCount(a);
+   const bCount = getAlphabetCount(b);
+   const counts  = [];
+
+   for (let char in aCount){
+       if( bCount.hasOwnProperty(char) ){
+           counts.push(Math.floor(bCount[char] / aCount[char]));
+       }else{
+           return 0;
+       }
+   }
+
+   return Math.min(...counts);
+}
+
+function getAlphabetCount(string){
+    const chars = string.split('');
+    const alphabetCount = {};
+
+    chars.forEach( char => {
+        if( alphabetCount.hasOwnProperty(char) ){
+            alphabetCount[char]++;
+        }else{
+            alphabetCount[char] = 1;
+        }
+    });
+
+    return alphabetCount;
+}
+
+stringsConstruction('abc', 'abccba');
