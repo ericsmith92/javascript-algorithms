@@ -94,6 +94,7 @@
 **94. Late Night Ride
 **95. Palindrom Rearranging
 **96. Strings Construction
+**97. House of Cats
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3710,3 +3711,38 @@ function getAlphabetCount(string){
 }
 
 stringsConstruction('abc', 'abccba');
+
+//97. House of Cats
+/*
+There are some people and cats in a house. You are given the number of legs they have all together. Your
+task is to return an array containing every possible numbers of people that could be in the house sorted 
+in ascending order. It's guranteed that each person has 2 legs and each cat has 4 legs.
+
+Example
+for legs = 6, houseOfCats(legs) = [1, 3]
+
+There could be either 1 cat and 1 person (4 + 2 = 6) or 3 people (2 * 3 = 6)
+
+legs = 2, houseOfCats(legs) = [1]
+
+There can only be one peron
+*/
+
+function houseOfCats(legs){
+    const peopleCount = [];
+
+    if(legs === 2){
+        return [1];
+    }
+
+    while(legs >= 0){
+        peopleCount.unshift(legs/2);
+
+        legs -= 4;
+    }
+
+    return peopleCount;
+}
+
+houseOfCats(6);
+houseOfCats(2);
