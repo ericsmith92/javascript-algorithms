@@ -3746,3 +3746,101 @@ function houseOfCats(legs){
 
 houseOfCats(6);
 houseOfCats(2);
+
+//Other Important JavaScript Things:
+
+/*
+1.
+== vs ===
+
+== compares just the value
+
+ex. 1 == '1' will return true since we're just comparing value
+
+BUT 1 === '1' will return false since 1, type int is not the same as '1' which type string
+
+2.What is closure in JavaScript?
+
+function  closureExample(){
+    let count = 0;
+
+    return () => {
+        count++;
+    }
+}
+
+A child function wrapped in a parent function (see above)
+
+We might want to do this to modify a variable we don't want in global scope and don't have as a property
+of a class.
+
+3.Lexical vs Block Scope
+          or
+  const vs let vs var
+
+  var - traditional way using lexical scope
+
+  const - store data that is a constant (not being modified) in the case of primitive types 
+  (boolean, string, number), arrays and objects using const can be modified.
+
+  let - var 2.0, but good for block scope (no variable hoisting)
+
+  function lexVsBlock(){
+        if(false){
+            var example = true;
+        }
+
+    console.log(example);
+ }
+
+lexVsBlock();
+
+*** run above example using let, const, var for more
+
+4. typeof
+
+Primitives:
+
+-Boolean - true of false
+-Null - no value
+-Undefined - a delcared variable but hasn't been given a value
+-Number - integers, floats, etc.
+-String - combination of characters ex. words
+-Symbol - a unique value that's not equal to any other value
+
+-Everything else is an Object type:
+-Object
+-Array
+-Function
+-RegEx
+
+5. 'use strict'
+
+-amendment to JavaScript to make us write stricter JavaScript
+-added to top of JS file, compiler applies stricter rules to avoid accidental creation of global variables
+
+
+6. Delete
+-Completely remove something from an array or a property from an Object 
+
+7. this
+-the context of what you're working within
+-So in the context on an onclick function, refers to element that called function
+-More object oriented answer, great for constructor:
+
+class Cat {
+    feet;
+
+    constructor(data){
+        this.feet = data.feet;
+    }
+}
+
+
+*/
+
+
+
+
+
+
