@@ -3798,6 +3798,24 @@ function highestValuedKey(obj){
 
 highestValuedKey({ 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0});
 
+
+//lets try a different approach 
+
+function highestValuedKey(obj){
+    const sortedValues = Object.values(obj).sort( (num1, num2) => num1 - num2 );
+    const highestValue = sortedValues [sortedValues.length - 1];
+
+    for(let [key, value] of Object.entries(obj)){
+        if(value === highestValue){
+            return key;
+        } 
+    }    
+}
+
+highestValuedKey({ 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0});
+
+
+
 //Other Important JavaScript Things:
 
 /*
