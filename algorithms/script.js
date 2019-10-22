@@ -1131,38 +1131,58 @@ Thoughts:
 */
 
 function composeRanges(nums){
-    let prev;
-    let firstInRange;
+    let prev = nums[0];
+    let firstInRange = nums[0];
     const ranges = [];
 
     nums.forEach((element, index) => { 
-        if(index === 0){
-            console.log('first condition fired');
-            prev = element;
-            firstInRange = element;
-        }else if(element === prev + 1){
-            console.log('second condition fired');
-            prev = element;
-        }else{
-            console.log('catch all condition fired');
-            /*if(index === nums.length -1 && element !== prev + 1){
+        if(index !== 0){
+            if(element === prev + 1){
+                prev = element;
+            }else if(prev === element && index === nums.length - 1){
                 ranges.push(`${element}`);
-            }else{*/
+            }else{
                 ranges.push(`${firstInRange}->${prev}`);
                 firstInRange = element;
-           /* } */
+            }
+    
+            prev = element;
         }
-
-        prev = element;
-
-        console.log(prev);
-        console.log(firstInRange);
     });
 
-    console.log(ranges);
+    return ranges;
 }
 
 composeRanges([-1, 0 , 1, 2, 6, 7, 9]); 
+
+
+function composeRanges(nums){
+    if(nums.length < 1){
+        return [];
+    }
+
+    const ranges = [{start: nums[0], end: nums[0]}];
+
+    for(let i = 1; i < nums.length; i++){
+        if(ranges[ranges.length - 1].end + 1 === nums[i]){
+            ranges[ranges.length - 1].end = nums[i];
+        }else{
+            ranges.push({start: nums[i], end: nums[i]});
+        }
+    }
+
+    for(let i = 0; i < ranges.length; i++){
+        if(ranges[i].start !== ranges[i].end){
+            ranges[i] = `${ranges[i].start}->${ranges[i].end}`;
+        }else{
+            ranges[i] = ranges[i].start.toString();
+        }
+    }
+
+    return ranges;
+}
+
+composeRanges([-1, 0, 1, 2, 6, 7, 9]); 
 
 //**39. Confirm Ending
 /*
@@ -3836,11 +3856,4 @@ class Cat {
     }
 }
 
-
 */
-
-
-
-
-
-
