@@ -1735,22 +1735,28 @@ Math.abs()
 */
 
 function findClosestPair(numbers, sum){
-    const pairs = [];
-
+    let lowest = -1;
+    let count = 0;
+    
     for(let i = 0; i < numbers.length; i++){
-        for(let j = numbers.length - 1; j >= 0; j--){
-            if( numbers[i] + numbers[j] === sum ){
-                pairs.push(numbers[i]);
-                pairs.push(numbers[j]);
+        for(let j = i + 1; j < numbers.length; j++){
+            if(numbers[i] + numbers[j] === sum){
+                if(count === 0){
+                    lowest = Math.abs(i - j);
+                }else{
+                    lowest = Math.abs(i - j) < lowest ? Math.abs(i - j) : lowest;
+                }
+                count++;
             }
         }
     }
 
-    return pairs;
-
+    return lowest;
 }   
 
 findClosestPair([1, 0, 2, 4, 3, 0], 5);
+findClosestPair([2, 3, 7], 8);
+findClosestPair([1, 7, 9, 8, 7, 4], 5);
 
 //55. Find Email Domain
 /*
