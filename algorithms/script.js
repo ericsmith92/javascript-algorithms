@@ -95,6 +95,7 @@
 **95. Palindrom Rearranging
 **96. Strings Construction
 **97. House of Cats
+**98. Key of Highest Value
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3772,6 +3773,30 @@ function houseOfCats(legs){
 
 houseOfCats(6);
 houseOfCats(2);
+
+//98. Key of Highest Value
+/*
+given an object of key value pairs, return the key associated with the highest value
+
+Ex.
+for obj = { 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0};
+
+highestValuedKey(obj) = 'anchor1';
+
+*/
+
+function highestValuedKey(obj){
+    const objEntriesArray = Object.entries(obj);
+    const sortedValues = Object.values(obj).sort( (num1, num2) => num1 - num2 );
+    const highestValue = sortedValues [sortedValues.length - 1];
+
+    const key = objEntriesArray.filter( entry => entry[1] === highestValue);
+
+    return key[0][0];
+    
+}
+
+highestValuedKey({ 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0});
 
 //Other Important JavaScript Things:
 
