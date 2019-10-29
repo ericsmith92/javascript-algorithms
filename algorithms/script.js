@@ -98,6 +98,7 @@
 **98. Key of Highest Value
 **99. Return lowest index to insert value
 **100. Beautiful Day at the Movies
+**101. Create a Phone Number
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3879,7 +3880,13 @@ function beautifulDays(i, j, k){
    let count = 0;
 
     for(let num = j; num >= i; num--){
-        const numReverse = parseInt(num.toString().split('').reverse().join(''));
+        const numReverse = parseInt(
+            num
+            .toString()
+            .split('')
+            .reverse()
+            .join('')
+        );
         if(Math.abs(num - numReverse) % k === 0){
             count++;
         }
@@ -3889,6 +3896,21 @@ function beautifulDays(i, j, k){
 }
 
 beautifulDays(30, 40, 4);
+
+//101. Create a Phone Number
+/*
+Write a function that accepts an array of 10 integers (between 0 and 9), that returns a string of those numbers in the form of a phone number.
+
+Example:
+
+createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) // => returns "(123) 456-7890"
+*/
+
+function createPhoneNumber(digits){
+    return `(${digits.slice(0, 3).join('')}) ${digits.slice(3, 6).join('')}-${digits.slice(6).join('')}`;
+}
+
+createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 
 //Other Important JavaScript Things:
 
