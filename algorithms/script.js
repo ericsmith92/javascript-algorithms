@@ -97,6 +97,7 @@
 **97. House of Cats
 **98. Key of Highest Value
 **99. Return lowest index to insert value
+**100. Beautiful Day at the Movies
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3841,6 +3842,53 @@ function getIndexToIns(array, value){
 
 getIndexToIns([4, 2, 3, 1], 1.5);
 
+//100. Beautiful Day at the Movies
+/*
+Lily likes to play games with integers. She has created a new game where she determines the difference between a number and its reverse. For instance, given the number 12, its reverse is 21. Their difference is 9. The number 120 reversed is 21, and their difference is 99.
+
+She decides to apply her game to decision making. She will look at a numbered range of days and will only go to a movie on a beautiful day.
+
+Given a range of numbered days,[i...j] and a number k, determine the number of days in the range that are beautiful. Beautiful numbers are defined as numbers where |i - reverse(i)| is evenly divisible by k. If a day's value is a beautiful number, it is a beautiful day. Print the number of beautiful days in the range.
+*/
+
+function beautifulDays(i, j, k){
+    const daysRange = [];
+    const beautifulDays = [];
+
+    for(let num = j; num >= i; num--){
+        daysRange.push(num)
+    }
+
+    daysRange.forEach(day => {
+        const dayReverse = parseInt([...day.toString()].reverse().join(''));
+        
+        if(Math.abs(day - dayReverse) % k === 0){
+            beautifulDays.push(day);
+        }
+    });
+
+    return beautifulDays.length;
+}
+
+beautifulDays(30, 40, 4);
+
+//lets try doing everything inside out for loop
+//much cleaner and likely faster
+
+function beautifulDays(i, j, k){
+   let count = 0;
+
+    for(let num = j; num >= i; num--){
+        const numReverse = parseInt(num.toString().split('').reverse().join(''));
+        if(Math.abs(num - numReverse) % k === 0){
+            count++;
+        }
+    }
+
+    return count;
+}
+
+beautifulDays(30, 40, 4);
 
 //Other Important JavaScript Things:
 
