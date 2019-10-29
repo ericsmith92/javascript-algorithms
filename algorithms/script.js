@@ -96,6 +96,7 @@
 **96. Strings Construction
 **97. House of Cats
 **98. Key of Highest Value
+**99. Return lowest index to insert value
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3814,6 +3815,31 @@ function highestValuedKey(obj){
 
 highestValuedKey({ 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0});
 
+//99. Return lowest index to insert value
+/*
+Return the lowest index at which a value (second argument) should be inserted into an array 
+(first argument) once it has been sorted. The returned value should be a number.
+
+Example:
+getIndexToIns([1, 2, 3, 4], 1.5), should return 1, because it is greater than value 1 (which has 
+index 0), but less than 2, which has index 1
+
+getIndexToIns([20, 3, 5], 19) should return 2 because once the array has been sorted it will look
+like [3, 5, 20] and 19 is less than 20 (index 2) and greater than 5 (index 1)
+*/
+
+function getIndexToIns(array, value){
+    array.sort((num1, num2) => num1 - num2);
+    
+    for(let i = 0; i < array.length; i++){
+        if(array[i] > value){
+            return i;
+        }
+    }
+
+}
+
+getIndexToIns([4, 2, 3, 1], 1.5);
 
 
 //Other Important JavaScript Things:
