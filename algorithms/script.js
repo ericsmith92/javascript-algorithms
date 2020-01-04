@@ -96,7 +96,11 @@
 **96. Strings Construction
 **97. House of Cats
 **98. Key of Highest Value
-**99. Spongebob String
+**99. Return lowest index to insert value
+**100. Beautiful Day at the Movies
+**101. Create a Phone Number
+**102. Spongebob String
+
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3815,8 +3819,104 @@ function highestValuedKey(obj){
 
 highestValuedKey({ 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0});
 
-//99. Spongebob String
-/* 
+//99. Return lowest index to insert value
+/*
+Return the lowest index at which a value (second argument) should be inserted into an array 
+(first argument) once it has been sorted. The returned value should be a number.
+
+Example:
+getIndexToIns([1, 2, 3, 4], 1.5), should return 1, because it is greater than value 1 (which has 
+index 0), but less than 2, which has index 1
+
+getIndexToIns([20, 3, 5], 19) should return 2 because once the array has been sorted it will look
+like [3, 5, 20] and 19 is less than 20 (index 2) and greater than 5 (index 1)
+*/
+
+function getIndexToIns(array, value){
+    array.sort((num1, num2) => num1 - num2);
+    
+    for(let i = 0; i < array.length; i++){
+        if(array[i] > value){
+            return i;
+        }
+    }
+
+}
+
+getIndexToIns([4, 2, 3, 1], 1.5);
+
+//100. Beautiful Day at the Movies
+/*
+Lily likes to play games with integers. She has created a new game where she determines the difference between a number and its reverse. For instance, given the number 12, its reverse is 21. Their difference is 9. The number 120 reversed is 21, and their difference is 99.
+
+She decides to apply her game to decision making. She will look at a numbered range of days and will only go to a movie on a beautiful day.
+
+Given a range of numbered days,[i...j] and a number k, determine the number of days in the range that are beautiful. Beautiful numbers are defined as numbers where |i - reverse(i)| is evenly divisible by k. If a day's value is a beautiful number, it is a beautiful day. Print the number of beautiful days in the range.
+*/
+
+function beautifulDays(i, j, k){
+    const daysRange = [];
+    const beautifulDays = [];
+
+    for(let num = j; num >= i; num--){
+        daysRange.push(num)
+    }
+
+    daysRange.forEach(day => {
+        const dayReverse = parseInt([...day.toString()].reverse().join(''));
+        
+        if(Math.abs(day - dayReverse) % k === 0){
+            beautifulDays.push(day);
+        }
+    });
+
+    return beautifulDays.length;
+}
+
+beautifulDays(30, 40, 4);
+
+//lets try doing everything inside out for loop
+//much cleaner and likely faster
+
+function beautifulDays(i, j, k){
+   let count = 0;
+
+    for(let num = j; num >= i; num--){
+        const numReverse = parseInt(
+            num
+            .toString()
+            .split('')
+            .reverse()
+            .join('')
+        );
+        if(Math.abs(num - numReverse) % k === 0){
+            count++;
+        }
+    }
+
+    return count;
+}
+
+beautifulDays(30, 40, 4);
+
+//101. Create a Phone Number
+/*
+Write a function that accepts an array of 10 integers (between 0 and 9), that returns a string of those numbers in the form of a phone number.
+
+Example:
+
+createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) // => returns "(123) 456-7890"
+*/
+
+function createPhoneNumber(digits){
+    return `(${digits.slice(0, 3).join('')}) ${digits.slice(3, 6).join('')}-${digits.slice(6).join('')}`;
+}
+
+createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+
+
+//**102. Spongebob String
+/*
 Given a string, write a function that will return the Spongebob meme version of it, with every other character being capitalized.
 
 Ex.
@@ -3855,6 +3955,7 @@ function spongeBobString(str){
 }
 
 spongeBobString('Hello how are you?');
+
 
 
 //Other Important JavaScript Things:
