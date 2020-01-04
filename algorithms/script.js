@@ -96,6 +96,7 @@
 **96. Strings Construction
 **97. House of Cats
 **98. Key of Highest Value
+**99. Spongebob String
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3814,6 +3815,46 @@ function highestValuedKey(obj){
 
 highestValuedKey({ 'anchor1' :100, 'anchor2' :36, 'anchor3' :0, 'anchor4' : 0, 'anchor5' : 0, 'anchor6' :0});
 
+//99. Spongebob String
+/* 
+Given a string, write a function that will return the Spongebob meme version of it, with every other character being capitalized.
+
+Ex.
+For:
+
+spongeBobString('Hello how are you?'), output would be 'HeLlO HoW ArE YoU?'
+*/
+
+//classic for loop
+function spongeBobString(str){
+    const lowerCaseStrArray = str.toLowerCase().split('');
+
+    for(let i = 0; i < lowerCaseStrArray.length; i++){
+        if(lowerCaseStrArray[i].match(/[a-z]/i) && i % 2 === 0){
+            lowerCaseStrArray[i] = lowerCaseStrArray[i].toUpperCase();
+        }
+    }
+
+    return lowerCaseStrArray.join('');
+}
+
+spongeBobString('Hello how are you?');
+
+
+//done using a foreach loop
+function spongeBobString(str){
+    const lowerCaseStrArray = str.toLowerCase().split('');
+
+    lowerCaseStrArray.forEach((lement, index) => {
+        if(element.match(/[a-z]/i) && index % 2 === 0){
+            lowerCaseStrArray[index] = element.toUpperCase();
+        }
+    });
+
+    return lowerCaseStrArray.join('');
+}
+
+spongeBobString('Hello how are you?');
 
 
 //Other Important JavaScript Things:
