@@ -4001,6 +4001,9 @@ would return this output
         description: 'My Stream'
     },
 }
+
+BONUS:
+pass what object key becomes outer object key
 */
 
 const objArray = [
@@ -4021,17 +4024,17 @@ const objArray = [
     }
 ];
 
-function objFromArray(objArray){
+function objFromArray(objArray, key){
     const objObject = {};
 
     objArray.forEach(element => {
-        objObject[element.id] = element;
+        objObject[element[key]] = element;
     });
 
     return objObject;
 }
 
-console.log(objFromArray(objArray));
+console.log(objFromArray(objArray, 'id'));
 
 
 
