@@ -100,7 +100,7 @@
 **100. Beautiful Day at the Movies
 **101. Create a Phone Number
 **102. Spongebob String
-
+**103. Object of objects from Array of objects
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -3955,6 +3955,83 @@ function spongeBobString(str){
 }
 
 spongeBobString('Hello how are you?');
+
+//103. Object of objects from Array of objects
+/*
+Write an algorithm that will take an array of objects with a unique identifier (id) and return an 
+object of nested objects with each unique identified (id) as a key
+
+ex.
+this input:
+
+[
+    {
+        id: 12,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+    {
+        id: 35,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+    {
+        id: 195,
+        title: 'My Stream',
+        description: 'My Stream'
+    }
+]
+
+would return this output
+
+{
+    12: {
+        id: 12,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+    35: {
+        id: 35,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+    195: {
+        id: 195,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+}
+*/
+
+const objArray = [
+    {
+        id: 12,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+    {
+        id: 35,
+        title: 'My Stream',
+        description: 'My Stream'
+    },
+    {
+        id: 195,
+        title: 'My Stream',
+        description: 'My Stream'
+    }
+];
+
+function objFromArray(objArray){
+    const objObject = {};
+
+    objArray.forEach(element => {
+        objObject[element.id] = element;
+    });
+
+    return objObject;
+}
+
+console.log(objFromArray(objArray));
 
 
 
