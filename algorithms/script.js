@@ -101,6 +101,7 @@
 **101. Create a Phone Number
 **102. Spongebob String
 **103. Object of objects from Array of objects
+**104. Return new Object with desired properties
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -4036,7 +4037,52 @@ function objFromArray(objArray, key){
 
 console.log(objFromArray(objArray, 'id'));
 
+//104. Return new Object with desired properties
+/*
+Given an object and the desired properties of said object, return a new object that contains
+only the desired properties
 
+Ex.
+
+Given the object:
+
+animals = {
+    cow: 'Moe',
+    cat: 'Felix',
+    dog: 'Storm',
+    rat: 'Stuart'
+}
+
+&& desired properties ['cat', 'rat']
+
+output should be:
+
+desiredPropertiesObj = {
+    cat: 'Felix',
+    rat: 'Stuart'
+}
+*/
+
+const profile = {
+	name: 'Eric',
+  age: 28,
+  sex: 'Male',
+  orientation: 'Straight'
+};
+
+const pick = (obj, properties) => {
+	const newObj = {};
+  
+  Object.keys(obj).forEach(key => {
+  	if(properties.includes(key)){
+    	newObj[key] = obj[key];
+    }
+  });
+  
+  return newObj;
+}
+
+pick(profile, ['name', 'orientation']);
 
 //Other Important JavaScript Things:
 
