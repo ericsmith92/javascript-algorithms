@@ -102,6 +102,7 @@
 **102. Spongebob String
 **103. Object of objects from Array of objects
 **104. Return new Object with desired properties
+**105. Format Number Thousands Separator 
 */
 
 //1. Remove Adjacent Duplicates From a String (currently only works if string is only composed of adjacent duplicates)
@@ -4083,6 +4084,25 @@ const pick = (obj, properties) => {
 }
 
 pick(profile, ['name', 'orientation']);
+
+//105. Format Number Thousands Separator 
+/*
+Take a raw integer or string, such as 1000 and return it formatted with the thousands seperator: 1,000
+
+ex. for formatNum(1000), output shoul be 1,000
+        formatNum(10000), output shoul be 10,000
+        formatNum(100000), output shoul be 100,000
+        formatNum(1000000), output shoul be 1,000,000
+*/
+
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+formatNumber(1000);
+formatNumber(10000);
+formatNumber(100000);
+formatNumber(1000000);
 
 //Other Important JavaScript Things:
 
